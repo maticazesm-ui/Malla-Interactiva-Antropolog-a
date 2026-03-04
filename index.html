@@ -1,14 +1,40 @@
-<div class="malla-container">
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malla Interactiva Antropología</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Malla Curricular Interactiva</h1>
     
-    <div class="semestre">
-        <h3>1° Semestre</h3>
-        <div id="ant1" class="ramo disponible" onclick="aprobar('ant1')">Paradigmas Sociológicos</div>
-        <div id="ant2" class="ramo disponible" onclick="aprobar('ant2')">Razonamiento Cuantitativo</div>
+    <div class="malla-container">
+        <div class="semestre">
+            <h3>I</h3>
+            <div id="ant101" class="ramo disponible" onclick="toggleRamo('ant101')">Paradigmas Sociológicos</div>
+            <div id="ant102" class="ramo disponible" onclick="toggleRamo('ant102')">Razonamiento Cuantitativo</div>
+            <div id="ant103" class="ramo disponible" onclick="toggleRamo('ant103')">Paradigmas Antropológicos</div>
+            <div id="ant104" class="ramo disponible" onclick="toggleRamo('ant104')">Lenguaje y Pensamiento</div>
         </div>
 
-    <div class="semestre">
-        <h3>2° Semestre</h3>
-        <div id="ant6" class="ramo bloqueado" data-req="ant1" onclick="aprobar('ant6')">Sociedad y Cultura Lat.</div>
+        <div class="semestre">
+            <h3>II</h3>
+            <div id="ant201" class="ramo bloqueado" data-req="ant101" onclick="toggleRamo('ant201')">Sociedad y Cultura Lat.</div>
+            <div id="ant202" class="ramo disponible" onclick="toggleRamo('ant202')">Taller de Escritura</div>
+            <div id="ant203" class="ramo bloqueado" data-req="ant103" onclick="toggleRamo('ant203')">Antropología del Parentesco</div>
+            <div id="ant204" class="ramo disponible" onclick="toggleRamo('ant204')">Fundamentos Biológicos</div>
         </div>
 
-</div>
+        <div class="semestre">
+            <h3>III</h3>
+            <div id="ant301" class="ramo bloqueado" data-req="ant103" onclick="toggleRamo('ant301')">Teoría Antropológica I</div>
+            <div id="ant302" class="ramo bloqueado" data-req="ant102" onclick="toggleRamo('ant302')">Metodología Inv. Social</div>
+            <div id="ant303" class="ramo bloqueado" data-req="ant203" onclick="toggleRamo('ant303')">Arqueología General</div>
+        </div>
+
+        </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
