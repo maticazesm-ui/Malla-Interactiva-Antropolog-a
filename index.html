@@ -3,12 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Antropología Interactiva</title>
+    <title>Malla Interactiva Antropología</title>
     <style>
-        /* --- ESTILOS (CSS) --- */
+        :root {
+            --pendiente: #fce4ec;
+            --aprobado: #6a1b9a;
+            --bloqueado: #e0e0e0;
+            --texto-p: #880e4f;
+            --texto-b: #9e9e9e;
+        }
+
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #f8f9fa;
             margin: 0;
             padding: 20px;
         }
@@ -16,153 +23,192 @@
         h1 {
             text-align: center;
             color: #2c3e50;
-            margin-bottom: 30px;
+            font-weight: 300;
+            margin-bottom: 40px;
         }
 
-        /* Contenedor que ordena los semestres en columnas */
         .malla-container {
             display: flex;
-            gap: 15px;
-            overflow-x: auto; /* Permite scroll horizontal en celulares */
-            padding-bottom: 20px;
+            gap: 20px;
+            overflow-x: auto;
+            padding: 10px;
             align-items: flex-start;
         }
 
-        /* Cada columna de semestre */
         .semestre {
-            min-width: 200px;
-            background: #ffffff;
-            border-radius: 12px;
-            padding: 10px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            min-width: 220px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .semestre h3 {
             text-align: center;
-            color: #3498db;
-            margin: 5px 0;
-            border-bottom: 2px solid #f0f2f5;
+            background: #34495e;
+            color: white;
+            padding: 8px;
+            border-radius: 5px;
+            margin: 0;
+            font-size: 0.9rem;
         }
 
-        /* Los cuadritos de los ramos */
         .ramo {
             padding: 15px 10px;
             border-radius: 8px;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             font-weight: 600;
             text-align: center;
-            min-height: 50px;
+            min-height: 65px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s;
+            transition: all 0.3s ease;
             cursor: pointer;
             border: 2px solid transparent;
-            line-height: 1.2;
+            line-height: 1.3;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         }
 
-        /* COLOR: Pendiente (Rosado) */
+        /* Pendiente */
         .disponible {
-            background-color: #fce4ec;
-            color: #880e4f;
+            background-color: var(--pendiente);
+            color: var(--texto-p);
             border-color: #f8bbd0;
         }
 
-        /* COLOR: Aprobado (Morado y Tachado) */
+        /* Aprobado */
         .aprobado {
-            background-color: #6a1b9a !important;
+            background-color: var(--aprobado) !important;
             color: white !important;
             text-decoration: line-through;
             border-color: #4a148c;
+            transform: scale(0.98);
         }
 
-        /* COLOR: Bloqueado (Gris) */
+        /* Bloqueado */
         .bloqueado {
-            background-color: #e0e0e0;
-            color: #9e9e9e;
+            background-color: var(--bloqueado);
+            color: var(--texto-b);
             cursor: not-allowed;
             pointer-events: none;
-            border-color: #bdbdbd;
+            border-color: #d1d1d1;
         }
 
         .ramo:hover:not(.bloqueado) {
-            transform: scale(1.03);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            filter: brightness(0.95);
+            transform: translateY(-2px);
         }
     </style>
 </head>
 <body>
 
-    <h1>Mi Malla de Antropología</h1>
+    <h1>Malla Curricular Antropología</h1>
 
     <div class="malla-container">
         <div class="semestre">
-            <h3>I</h3>
-            <div id="r1" class="ramo disponible" onclick="toggleRamo('r1')">Paradigmas Sociológicos</div>
-            <div id="r2" class="ramo disponible" onclick="toggleRamo('r2')">Razonamiento Cuantitativo</div>
-            <div id="r3" class="ramo disponible" onclick="toggleRamo('r3')">Paradigmas Antropológicos</div>
-            <div id="r4" class="ramo disponible" onclick="toggleRamo('r4')">Lenguaje y Pensamiento</div>
+            <h3>I SEMESTRE</h3>
+            <div id="r1_1" class="ramo disponible" onclick="toggle('r1_1')">Paradigmas Sociológicos</div>
+            <div id="r1_2" class="ramo disponible" onclick="toggle('r1_2')">Razonamiento Cuantitativo</div>
+            <div id="r1_3" class="ramo disponible" onclick="toggle('r1_3')">Paradigmas Antropológicos</div>
+            <div id="r1_4" class="ramo disponible" onclick="toggle('r1_4')">Lenguaje y Pensamiento</div>
+            <div id="r1_5" class="ramo disponible" onclick="toggle('r1_5')">Antropología de la Salud</div>
         </div>
 
         <div class="semestre">
-            <h3>II</h3>
-            <div id="r5" class="ramo bloqueado" data-req="r1" onclick="toggleRamo('r5')">Sociedad y Cultura Lat.</div>
-            <div id="r6" class="ramo disponible" onclick="toggleRamo('r6')">Taller de Escritura</div>
-            <div id="r7" class="ramo bloqueado" data-req="r3" onclick="toggleRamo('r7')">Antropología del Parentesco</div>
-            <div id="r8" class="ramo disponible" onclick="toggleRamo('r8')">Fundamentos Biológicos</div>
+            <h3>II SEMESTRE</h3>
+            <div id="r2_1" class="ramo bloqueado" data-req="r1_1" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
+            <div id="r2_2" class="ramo disponible" onclick="toggle('r2_2')">Taller de Escritura Crítica</div>
+            <div id="r2_3" class="ramo bloqueado" data-req="r1_3" onclick="toggle('r2_3')">Antropología del Parentesco</div>
+            <div id="r2_4" class="ramo disponible" onclick="toggle('r2_4')">Fundamentos Biológicos de la Evolución</div>
+            <div id="r2_5" class="ramo disponible" onclick="toggle('r2_5')">Inglés I</div>
         </div>
 
         <div class="semestre">
-            <h3>III</h3>
-            <div id="r9" class="ramo bloqueado" data-req="r3" onclick="toggleRamo('r9')">Teoría Antropológica I</div>
-            <div id="r10" class="ramo bloqueado" data-req="r2" onclick="toggleRamo('r10')">Metodología Inv. Social</div>
-            <div id="r11" class="ramo bloqueado" data-req="r7" onclick="toggleRamo('r11')">Arqueología General</div>
+            <h3>III SEMESTRE</h3>
+            <div id="r3_1" class="ramo bloqueado" data-req="r1_3" onclick="toggle('r3_1')">Teoría Antropológica I</div>
+            <div id="r3_2" class="ramo bloqueado" data-req="r1_2" onclick="toggle('r3_2')">Metodología de la Inv. Social</div>
+            <div id="r3_3" class="ramo bloqueado" data-req="r2_3" onclick="toggle('r3_3')">Arqueología General</div>
+            <div id="r3_4" class="ramo disponible" onclick="toggle('r3_4')">Antropología y Derechos Humanos</div>
+            <div id="r3_5" class="ramo bloqueado" data-req="r2_5" onclick="toggle('r3_5')">Inglés II</div>
         </div>
 
+        <div class="semestre">
+            <h3>IV SEMESTRE</h3>
+            <div id="r4_1" class="ramo bloqueado" data-req="r3_1" onclick="toggle('r4_1')">Teoría Antropológica II</div>
+            <div id="r4_2" class="ramo bloqueado" data-req="r3_2" onclick="toggle('r4_2')">Metodologías Cualitativas</div>
+            <div id="r4_3" class="ramo disponible" onclick="toggle('r4_3')">Introducción a la Etnografía</div>
+            <div id="r4_4" class="ramo disponible" onclick="toggle('r4_4')">Formación Transversal</div>
+            <div id="r4_5" class="ramo disponible" onclick="toggle('r4_5')">Electivo</div>
         </div>
+
+        <div class="semestre">
+            <h3>V SEMESTRE</h3>
+            <div id="r5_1" class="ramo bloqueado" data-req="r4_1" onclick="toggle('r5_1')">Teoría Antropológica III</div>
+            <div id="r5_2" class="ramo bloqueado" data-req="r4_2" onclick="toggle('r5_2')">Análisis de Datos Cualitativos</div>
+            <div id="r5_3" class="ramo bloqueado" data-req="r4_3" onclick="toggle('r5_3')">Etnografía I</div>
+            <div id="r5_4" class="ramo disponible" onclick="toggle('r5_4')">Antropología Política</div>
+            <div id="r5_5" class="ramo disponible" onclick="toggle('r5_5')">Electivo</div>
+        </div>
+
+        <div class="semestre">
+            <h3>VI SEMESTRE</h3>
+            <div id="r6_1" class="ramo bloqueado" data-req="r5_1" onclick="toggle('r6_1')">Teoría Antropológica IV</div>
+            <div id="r6_2" class="ramo bloqueado" data-req="r5_2" onclick="toggle('r6_2')">Análisis de Datos Cuantitativos</div>
+            <div id="r6_3" class="ramo bloqueado" data-req="r5_3" onclick="toggle('r6_3')">Etnografía II</div>
+            <div id="r6_4" class="ramo disponible" onclick="toggle('r6_4')">Antropología Económica</div>
+            <div id="r6_5" class="ramo disponible" onclick="toggle('r6_5')">Electivo</div>
+        </div>
+
+        <div class="semestre">
+            <h3>VII SEMESTRE</h3>
+            <div id="r7_1" class="ramo bloqueado" data-req="r6_1" onclick="toggle('r7_1')">Debates Antrop. Contemporánea</div>
+            <div id="r7_2" class="ramo bloqueado" data-req="r6_3" onclick="toggle('r7_2')">Seminario de Grado I</div>
+            <div id="r7_3" class="ramo disponible" onclick="toggle('r7_3')">Ética Profesional</div>
+        </div>
+
+        <div class="semestre">
+            <h3>VIII SEMESTRE</h3>
+            <div id="r8_1" class="ramo bloqueado" data-req="r7_2" onclick="toggle('r8_1')">Seminario de Grado II</div>
+            <div id="r8_2" class="ramo disponible" onclick="toggle('r8_2')">Práctica Profesional</div>
+        </div>
+
+        <div class="semestre">
+            <h3>IX SEMESTRE</h3>
+            <div id="r9_1" class="ramo disponible" onclick="toggle('r9_1')">Formulación de Proyectos</div>
+            <div id="r9_2" class="ramo bloqueado" data-req="r8_1" onclick="toggle('r9_2')">Taller de Tesis I</div>
+        </div>
+
+        <div class="semestre">
+            <h3>X SEMESTRE</h3>
+            <div id="r10_1" class="ramo bloqueado" data-req="r9_2" onclick="toggle('r10_1')">Taller de Tesis II</div>
+            <div id="r10_2" class="ramo bloqueado" data-req="r9_1" onclick="toggle('r10_2')">Examen de Título</div>
+        </div>
+    </div>
 
     <script>
-        /* --- LÓGICA (JavaScript) --- */
-        function toggleRamo(id) {
-            const ramo = document.getElementById(id);
-            
-            if (ramo.classList.contains('aprobado')) {
-                ramo.classList.remove('aprobado');
-                ramo.classList.add('disponible');
+        function toggle(id) {
+            const el = document.getElementById(id);
+            if (el.classList.contains('aprobado')) {
+                el.classList.replace('aprobado', 'disponible');
             } else {
-                ramo.classList.add('aprobado');
-                ramo.classList.remove('disponible');
+                el.classList.replace('disponible', 'aprobado');
             }
-            actualizarMalla();
+            actualizar();
         }
 
-        function actualizarMalla() {
-            const bloqueados = document.querySelectorAll('.ramo[data-req]');
-            
-            bloqueados.forEach(ramo => {
-                const idRequisito = ramo.getAttribute('data-req');
-                const requisito = document.getElementById(idRequisito);
-
-                if (requisito && requisito.classList.contains('aprobado')) {
+        function actualizar() {
+            document.querySelectorAll('.ramo[data-req]').forEach(ramo => {
+                const req = document.getElementById(ramo.getAttribute('data-req'));
+                if (req && req.classList.contains('aprobado')) {
                     ramo.classList.remove('bloqueado');
-                    if (!ramo.classList.contains('aprobado')) {
-                        ramo.classList.add('disponible');
-                    }
-                    ramo.style.pointerEvents = "auto";
+                    if (!ramo.classList.contains('aprobado')) ramo.classList.add('disponible');
                 } else {
                     ramo.classList.add('bloqueado');
-                    ramo.classList.remove('disponible');
-                    ramo.classList.remove('aprobado');
-                    ramo.style.pointerEvents = "none";
+                    ramo.classList.remove('disponible', 'aprobado');
                 }
             });
         }
-        
-        // Ejecutar al inicio
-        window.onload = actualizarMalla;
+        window.onload = actualizar;
     </script>
 </body>
 </html>
