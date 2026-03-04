@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Interactiva Antropología</title>
+    <title>Malla Interactiva Antropología UC</title>
     <style>
         :root {
             --celeste: #8ecae6;
@@ -18,10 +18,55 @@
             background-color: #fdfdfd;
             margin: 0;
             padding: 20px;
+            color: var(--texto-oscuro);
         }
 
-        h1 { text-align: center; color: var(--texto-oscuro); font-weight: 400; }
+        /* --- CABECERA --- */
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
 
+        h1 { margin-bottom: 5px; font-weight: 600; font-size: 1.8rem; }
+        
+        .subtitulo { 
+            font-size: 1rem; 
+            color: #666; 
+            margin-bottom: 20px;
+            font-weight: 400;
+        }
+
+        /* --- BARRA DE PROGRESO --- */
+        .progress-container {
+            max-width: 600px;
+            margin: 0 auto 10px auto;
+            background-color: #e0e0e0;
+            border-radius: 20px;
+            height: 22px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        #progress-bar {
+            height: 100%;
+            width: 0%;
+            background-color: var(--verde-aprobado);
+            transition: width 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #progress-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top: 0;
+            line-height: 22px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: #333;
+        }
+
+        /* --- MALLA --- */
         .malla-container {
             display: flex;
             gap: 15px;
@@ -62,26 +107,12 @@
             border: 2px solid rgba(0,0,0,0.05);
             transition: 0.2s;
             line-height: 1.2;
-            user-select: none;
         }
 
-        /* ESTADOS DE COLOR */
-        
-        /* 1. Celeste para ramos normales disponibles */
+        /* COLORES */
         .disponible { background-color: var(--celeste); color: var(--texto-oscuro); }
-
-        /* 2. Amarillo para OFG disponibles */
         .ofg.disponible { background-color: var(--amarillo-ofg); color: #5a461a; }
-
-        /* 3. Verde para aprobados (Todos) */
-        .aprobado { 
-            background-color: var(--verde-aprobado) !important; 
-            color: white !important; 
-            text-decoration: line-through; 
-            border-color: #283618;
-        }
-
-        /* Bloqueados */
+        .aprobado { background-color: var(--verde-aprobado) !important; color: white !important; text-decoration: line-through; border-color: transparent; }
         .bloqueado { background-color: var(--bloqueado); color: #999; cursor: not-allowed; }
 
         /* TOOLTIP */
@@ -98,27 +129,39 @@
             font-size: 0.7rem;
             width: 170px;
             z-index: 999;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            display: block;
-            text-decoration: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
 
-        .ramo.bloqueado:hover::after {
-            content: "";
-            position: absolute;
-            bottom: 105%;
-            left: 50%;
-            transform: translateX(-50%);
-            border: 6px solid transparent;
-            border-top-color: #333;
+        /* --- LEYENDA --- */
+        .leyenda {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin: 40px auto;
+            padding: 20px;
+            background: #f1f1f1;
+            border-radius: 10px;
+            max-width: 900px;
         }
 
-        .ramo:hover:not(.bloqueado) { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .leyenda-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
+        .cuadrito { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); }
+
+        .ramo:hover:not(.bloqueado) { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
-    <h1>Malla Curricular Antropología</h1>
+    <header>
+        <h1>Malla Curricular Interactiva Antropología UC</h1>
+        <div class="subtitulo">Consejería Académica Antropología-Arqueología 2026</div>
+        
+        <div class="progress-container">
+            <div id="progress-bar"></div>
+            <div id="progress-text">Progreso: 0%</div>
+        </div>
+    </header>
 
     <div class="malla-container">
         <div class="semestre">
@@ -135,8 +178,8 @@
             <div id="r2_1" class="ramo bloqueado" data-req="r1_1" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
             <div id="r2_2" class="ramo bloqueado" data-req="r1_4" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
             <div id="r2_3" class="ramo bloqueado" data-req="r1_4" onclick="toggle('r2_3')">Prehistoria General</div>
-            <div id="r2_4" class="ramo disponible ofg" onclick="toggle('r2_4')">Filosofía: ¿para qué? (OFG)</div>
-            <div id="r2_5" class="ramo disponible ofg" onclick="toggle('r2_5')">Electivo Formación General (OFG)</div>
+            <div id="r2_4" class="ramo disponible ofg" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
+            <div id="r2_5" class="ramo disponible ofg" onclick="toggle('r2_5')">Electivo Formación General</div>
         </div>
 
         <div class="semestre">
@@ -145,8 +188,14 @@
             <div id="r3_2" class="ramo bloqueado" data-req="r1_2" onclick="toggle('r3_2')">Metodología de la Inv. Social</div>
             <div id="r3_3" class="ramo bloqueado" data-req="r2_3" onclick="toggle('r3_3')">Arqueología Americana</div>
         </div>
-        
-        </div>
+    </div>
+
+    <div class="leyenda">
+        <div class="leyenda-item"><div class="cuadrito" style="background: var(--celeste);"></div> No cursado / No aprobado</div>
+        <div class="leyenda-item"><div class="cuadrito" style="background: var(--amarillo-ofg);"></div> OFG pendiente</div>
+        <div class="leyenda-item"><div class="cuadrito" style="background: var(--verde-aprobado);"></div> Ramo aprobado</div>
+        <div class="leyenda-item"><div class="cuadrito" style="background: var(--bloqueado);"></div> Ramo bloqueado</div>
+    </div>
 
     <script>
         function toggle(id) {
@@ -154,18 +203,16 @@
             if (el.classList.contains('bloqueado')) return;
 
             if (el.classList.contains('aprobado')) {
-                el.classList.remove('aprobado');
-                el.classList.add('disponible');
+                el.classList.replace('aprobado', 'disponible');
             } else {
-                el.classList.add('aprobado');
-                el.classList.remove('disponible');
+                el.classList.replace('disponible', 'aprobado');
             }
             actualizar();
         }
 
         function actualizar() {
             const ramos = document.querySelectorAll('.ramo');
-            const progreso = {};
+            let aprobados = 0;
 
             ramos.forEach(ramo => {
                 const reqId = ramo.getAttribute('data-req');
@@ -177,22 +224,29 @@
                     } else {
                         ramo.classList.add('bloqueado');
                         ramo.classList.remove('disponible', 'aprobado');
-                        if (requisito) {
-                            ramo.setAttribute('data-req-name', requisito.innerText);
-                        }
+                        if (requisito) ramo.setAttribute('data-req-name', requisito.innerText);
                     }
                 }
-                progreso[ramo.id] = ramo.classList.contains('aprobado');
+                if (ramo.classList.contains('aprobado')) aprobados++;
             });
-            localStorage.setItem('malla_personal_v2', JSON.stringify(progreso));
+
+            // Barra de progreso
+            const porcentaje = Math.round((aprobados / ramos.length) * 100) || 0;
+            document.getElementById('progress-bar').style.width = porcentaje + '%';
+            document.getElementById('progress-text').innerText = `Progreso: ${porcentaje}%`;
+
+            // Guardado persistente
+            const save = {};
+            ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
+            localStorage.setItem('malla_uc_2026', JSON.stringify(save));
         }
 
         function cargar() {
-            const data = JSON.parse(localStorage.getItem('malla_personal_v2'));
-            if (data) {
-                Object.keys(data).forEach(id => {
+            const save = JSON.parse(localStorage.getItem('malla_uc_2026'));
+            if (save) {
+                Object.keys(save).forEach(id => {
                     const el = document.getElementById(id);
-                    if (el && data[id]) {
+                    if (el && save[id]) {
                         el.classList.add('aprobado');
                         el.classList.remove('disponible', 'bloqueado');
                     }
