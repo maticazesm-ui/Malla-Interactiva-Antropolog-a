@@ -3,144 +3,147 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Antropología</title>
+    <title>Malla Interactiva Antropología</title>
     <style>
         :root {
-            --pendiente: #fce4ec;
-            --aprobado: #6a1b9a;
-            --bloqueado: #e0e0e0;
-            --texto-p: #880e4f;
-            --texto-b: #757575;
+            --celeste: #8ecae6;
+            --verde-aprobado: #606c38;
+            --amarillo-ofg: #e9c46a;
+            --bloqueado: #eeeeee;
+            --texto-oscuro: #023047;
         }
 
         body {
-            font-family: 'Segoe UI', sans-serif;
-            background-color: #f0f2f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #fdfdfd;
+            margin: 0;
             padding: 20px;
         }
 
-        h1 { text-align: center; color: #2c3e50; }
+        h1 { text-align: center; color: var(--texto-oscuro); font-weight: 400; }
 
         .malla-container {
             display: flex;
             gap: 15px;
             overflow-x: auto;
-            padding: 50px 10px; /* Espacio extra arriba para que el cartel no se corte */
+            padding: 80px 10px 40px 10px;
             align-items: flex-start;
         }
 
         .semestre {
-            min-width: 200px;
+            min-width: 220px;
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 12px;
         }
 
         .semestre h3 {
             text-align: center;
-            background: #34495e;
+            background: var(--texto-oscuro);
             color: white;
             padding: 8px;
-            border-radius: 6px;
-            margin: 0;
+            border-radius: 4px;
             font-size: 0.85rem;
+            margin: 0;
         }
 
         .ramo {
-            position: relative; /* Necesario para posicionar el cartelito */
-            padding: 12px 8px;
+            position: relative;
+            padding: 15px 10px;
             border-radius: 8px;
             font-size: 0.75rem;
             font-weight: 600;
             text-align: center;
-            min-height: 60px;
+            min-height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
             cursor: pointer;
-            border: 2px solid transparent;
+            border: 2px solid rgba(0,0,0,0.05);
+            transition: 0.2s;
             line-height: 1.2;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            user-select: none;
         }
 
-        .disponible { background-color: var(--pendiente); color: var(--texto-p); border-color: #f8bbd0; }
-        .aprobado { background-color: var(--aprobado) !important; color: white !important; text-decoration: line-through; }
-        .bloqueado { background-color: var(--bloqueado); color: var(--texto-b); cursor: not-allowed; }
+        /* ESTADOS DE COLOR */
+        
+        /* 1. Celeste para ramos normales disponibles */
+        .disponible { background-color: var(--celeste); color: var(--texto-oscuro); }
 
-        /* --- EL CARTELITO MÁGICO (TOOLTIP) --- */
+        /* 2. Amarillo para OFG disponibles */
+        .ofg.disponible { background-color: var(--amarillo-ofg); color: #5a461a; }
+
+        /* 3. Verde para aprobados (Todos) */
+        .aprobado { 
+            background-color: var(--verde-aprobado) !important; 
+            color: white !important; 
+            text-decoration: line-through; 
+            border-color: #283618;
+        }
+
+        /* Bloqueados */
+        .bloqueado { background-color: var(--bloqueado); color: #999; cursor: not-allowed; }
+
+        /* TOOLTIP */
         .ramo.bloqueado:hover::before {
-            content: attr(data-tooltip); /* Aquí se inyecta el nombre del requisito */
+            content: "🔒 Requiere: " attr(data-req-name);
             position: absolute;
             bottom: 115%;
             left: 50%;
             transform: translateX(-50%);
-            background-color: #333;
+            background: #333;
             color: #fff;
-            padding: 8px 12px;
+            padding: 10px;
             border-radius: 6px;
             font-size: 0.7rem;
-            white-space: normal;
-            width: 160px;
-            z-index: 100;
+            width: 170px;
+            z-index: 999;
             box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-            pointer-events: none;
+            display: block;
             text-decoration: none;
-            line-height: 1.1;
         }
 
-        /* Triangulito del cartelito */
         .ramo.bloqueado:hover::after {
             content: "";
             position: absolute;
-            bottom: 100%;
+            bottom: 105%;
             left: 50%;
             transform: translateX(-50%);
-            border: 8px solid transparent;
+            border: 6px solid transparent;
             border-top-color: #333;
-            z-index: 100;
         }
 
-        .ramo:hover:not(.bloqueado) { transform: translateY(-3px); filter: brightness(0.95); }
+        .ramo:hover:not(.bloqueado) { transform: translateY(-3px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
     </style>
 </head>
 <body>
 
     <h1>Malla Curricular Antropología</h1>
 
-    <div class="malla-container" id="malla">
+    <div class="malla-container">
         <div class="semestre">
             <h3>I SEMESTRE</h3>
             <div id="r1_1" class="ramo disponible" onclick="toggle('r1_1')">Paradigmas Sociológicos</div>
             <div id="r1_2" class="ramo disponible" onclick="toggle('r1_2')">Razonamiento Cuantitativo</div>
             <div id="r1_3" class="ramo disponible" onclick="toggle('r1_3')">Paradigmas Antropológicos</div>
-            <div id="r1_4" class="ramo disponible" onclick="toggle('r1_4')">Lenguaje y Pensamiento</div>
-            <div id="r1_5" class="ramo disponible" onclick="toggle('r1_5')">Antropología de la Salud</div>
+            <div id="r1_4" class="ramo disponible" onclick="toggle('r1_4')">Introducción a la Arqueología</div>
+            <div id="r1_5" class="ramo disponible" onclick="toggle('r1_5')">Introducción a la Antropología Biológica</div>
         </div>
 
         <div class="semestre">
             <h3>II SEMESTRE</h3>
             <div id="r2_1" class="ramo bloqueado" data-req="r1_1" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
-            <div id="r2_2" class="ramo disponible" onclick="toggle('r2_2')">Taller de Escritura Crítica</div>
-            <div id="r2_3" class="ramo bloqueado" data-req="r1_3" onclick="toggle('r2_3')">Antropología del Parentesco</div>
-            <div id="r2_4" class="ramo disponible" onclick="toggle('r2_4')">Fundamentos Biológicos de la Evolución</div>
-            <div id="r2_5" class="ramo disponible" onclick="toggle('r2_5')">Inglés I</div>
+            <div id="r2_2" class="ramo bloqueado" data-req="r1_4" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
+            <div id="r2_3" class="ramo bloqueado" data-req="r1_4" onclick="toggle('r2_3')">Prehistoria General</div>
+            <div id="r2_4" class="ramo disponible ofg" onclick="toggle('r2_4')">Filosofía: ¿para qué? (OFG)</div>
+            <div id="r2_5" class="ramo disponible ofg" onclick="toggle('r2_5')">Electivo Formación General (OFG)</div>
         </div>
 
         <div class="semestre">
             <h3>III SEMESTRE</h3>
             <div id="r3_1" class="ramo bloqueado" data-req="r1_3" onclick="toggle('r3_1')">Teoría Antropológica I</div>
             <div id="r3_2" class="ramo bloqueado" data-req="r1_2" onclick="toggle('r3_2')">Metodología de la Inv. Social</div>
-            <div id="r3_3" class="ramo bloqueado" data-req="r2_3" onclick="toggle('r3_3')">Arqueología General</div>
-            <div id="r3_4" class="ramo disponible" onclick="toggle('r3_4')">Antropología y Derechos Humanos</div>
-            <div id="r3_5" class="ramo bloqueado" data-req="r2_5" onclick="toggle('r3_5')">Inglés II</div>
-        </div>
-
-        <div class="semestre">
-            <h3>IV SEMESTRE</h3>
-            <div id="r4_1" class="ramo bloqueado" data-req="r3_1" onclick="toggle('r4_1')">Teoría Antropológica II</div>
-            <div id="r4_2" class="ramo bloqueado" data-req="r3_2" onclick="toggle('r4_2')">Metodologías Cualitativas</div>
-            <div id="r4_3" class="ramo disponible" onclick="toggle('r4_3')">Introducción a la Etnografía</div>
+            <div id="r3_3" class="ramo bloqueado" data-req="r2_3" onclick="toggle('r3_3')">Arqueología Americana</div>
         </div>
         
         </div>
@@ -157,10 +160,10 @@
                 el.classList.add('aprobado');
                 el.classList.remove('disponible');
             }
-            actualizarMalla();
+            actualizar();
         }
 
-        function actualizarMalla() {
+        function actualizar() {
             const ramos = document.querySelectorAll('.ramo');
             const progreso = {};
 
@@ -171,23 +174,21 @@
                     if (requisito && requisito.classList.contains('aprobado')) {
                         ramo.classList.remove('bloqueado');
                         if (!ramo.classList.contains('aprobado')) ramo.classList.add('disponible');
-                        ramo.removeAttribute('data-tooltip');
                     } else {
                         ramo.classList.add('bloqueado');
                         ramo.classList.remove('disponible', 'aprobado');
                         if (requisito) {
-                            // ESTO PONE EL TEXTO EN EL CARTELITO
-                            ramo.setAttribute('data-tooltip', "Requisito: " + requisito.innerText);
+                            ramo.setAttribute('data-req-name', requisito.innerText);
                         }
                     }
                 }
                 progreso[ramo.id] = ramo.classList.contains('aprobado');
             });
-            localStorage.setItem('miProgreso', JSON.stringify(progreso));
+            localStorage.setItem('malla_personal_v2', JSON.stringify(progreso));
         }
 
         function cargar() {
-            const data = JSON.parse(localStorage.getItem('miProgreso'));
+            const data = JSON.parse(localStorage.getItem('malla_personal_v2'));
             if (data) {
                 Object.keys(data).forEach(id => {
                     const el = document.getElementById(id);
@@ -197,7 +198,7 @@
                     }
                 });
             }
-            actualizarMalla();
+            actualizar();
         }
 
         window.onload = cargar;
