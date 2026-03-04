@@ -1,1 +1,29 @@
+.ramo {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+  border: 2px solid transparent;
+}
 
+/* Estado inicial: No aprobado */
+.disponible {
+  background-color: #FFC0CB; /* Rosado */
+  color: #333;
+}
+
+/* Estado: Aprobado */
+.aprobado {
+  background-color: #6A0DAD; /* Morado */
+  color: white;
+  text-decoration: line-through;
+}
+
+/* Estado: Bloqueado por pre-requisito */
+.bloqueado {
+  background-color: #D3D3D3; /* Gris */
+  color: #888;
+  cursor: not-allowed;
+  pointer-events: none;
+}
