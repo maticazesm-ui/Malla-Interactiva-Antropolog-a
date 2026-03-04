@@ -6,16 +6,16 @@
     <title>Malla Interactiva Antropología</title>
     <style>
         :root {
-            --pendiente: #fce4ec;
-            --aprobado: #6a1b9a;
-            --bloqueado: #e0e0e0;
+            --pendiente: #fce4ec; /* Rosado */
+            --aprobado: #6a1b9a;  /* Morado */
+            --bloqueado: #e0e0e0; /* Gris */
             --texto-p: #880e4f;
             --texto-b: #9e9e9e;
         }
 
         body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
             margin: 0;
             padding: 20px;
         }
@@ -23,20 +23,21 @@
         h1 {
             text-align: center;
             color: #2c3e50;
-            font-weight: 300;
-            margin-bottom: 40px;
+            margin-bottom: 30px;
         }
 
+        /* Contenedor horizontal para los semestres */
         .malla-container {
             display: flex;
             gap: 20px;
             overflow-x: auto;
-            padding: 10px;
+            padding: 20px 10px;
             align-items: flex-start;
         }
 
+        /* Columnas de cada semestre */
         .semestre {
-            min-width: 220px;
+            min-width: 200px;
             display: flex;
             flex-direction: column;
             gap: 12px;
@@ -46,19 +47,21 @@
             text-align: center;
             background: #34495e;
             color: white;
-            padding: 8px;
-            border-radius: 5px;
+            padding: 10px;
+            border-radius: 8px;
             margin: 0;
             font-size: 0.9rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
+        /* Estilo de los ramos (cuadrados) */
         .ramo {
             padding: 15px 10px;
-            border-radius: 8px;
+            border-radius: 10px;
             font-size: 0.8rem;
             font-weight: 600;
             text-align: center;
-            min-height: 65px;
+            min-height: 70px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -66,37 +69,34 @@
             cursor: pointer;
             border: 2px solid transparent;
             line-height: 1.3;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
         }
 
-        /* Pendiente */
+        /* Estados de color */
         .disponible {
             background-color: var(--pendiente);
             color: var(--texto-p);
             border-color: #f8bbd0;
         }
 
-        /* Aprobado */
         .aprobado {
             background-color: var(--aprobado) !important;
             color: white !important;
             text-decoration: line-through;
             border-color: #4a148c;
-            transform: scale(0.98);
+            transform: scale(0.97);
         }
 
-        /* Bloqueado */
         .bloqueado {
             background-color: var(--bloqueado);
             color: var(--texto-b);
-            cursor: not-allowed;
-            pointer-events: none;
+            cursor: help; /* Cursor de ayuda para el tooltip */
             border-color: #d1d1d1;
         }
 
         .ramo:hover:not(.bloqueado) {
+            transform: translateY(-3px);
             filter: brightness(0.95);
-            transform: translateY(-2px);
         }
     </style>
 </head>
@@ -138,7 +138,6 @@
             <div id="r4_2" class="ramo bloqueado" data-req="r3_2" onclick="toggle('r4_2')">Metodologías Cualitativas</div>
             <div id="r4_3" class="ramo disponible" onclick="toggle('r4_3')">Introducción a la Etnografía</div>
             <div id="r4_4" class="ramo disponible" onclick="toggle('r4_4')">Formación Transversal</div>
-            <div id="r4_5" class="ramo disponible" onclick="toggle('r4_5')">Electivo</div>
         </div>
 
         <div class="semestre">
@@ -147,7 +146,6 @@
             <div id="r5_2" class="ramo bloqueado" data-req="r4_2" onclick="toggle('r5_2')">Análisis de Datos Cualitativos</div>
             <div id="r5_3" class="ramo bloqueado" data-req="r4_3" onclick="toggle('r5_3')">Etnografía I</div>
             <div id="r5_4" class="ramo disponible" onclick="toggle('r5_4')">Antropología Política</div>
-            <div id="r5_5" class="ramo disponible" onclick="toggle('r5_5')">Electivo</div>
         </div>
 
         <div class="semestre">
@@ -156,7 +154,6 @@
             <div id="r6_2" class="ramo bloqueado" data-req="r5_2" onclick="toggle('r6_2')">Análisis de Datos Cuantitativos</div>
             <div id="r6_3" class="ramo bloqueado" data-req="r5_3" onclick="toggle('r6_3')">Etnografía II</div>
             <div id="r6_4" class="ramo disponible" onclick="toggle('r6_4')">Antropología Económica</div>
-            <div id="r6_5" class="ramo disponible" onclick="toggle('r6_5')">Electivo</div>
         </div>
 
         <div class="semestre">
@@ -193,22 +190,55 @@
             } else {
                 el.classList.replace('disponible', 'aprobado');
             }
-            actualizar();
+            actualizarYGuardar();
         }
 
-        function actualizar() {
+        function actualizarYGuardar() {
+            const todosLosRamos = document.querySelectorAll('.ramo');
+            const progreso = {};
+
+            // 1. Revisar Requisitos y asignar Tooltips
             document.querySelectorAll('.ramo[data-req]').forEach(ramo => {
-                const req = document.getElementById(ramo.getAttribute('data-req'));
-                if (req && req.classList.contains('aprobado')) {
+                const idRequisito = ramo.getAttribute('data-req');
+                const requisito = document.getElementById(idRequisito);
+
+                if (requisito && requisito.classList.contains('aprobado')) {
                     ramo.classList.remove('bloqueado');
-                    if (!ramo.classList.contains('aprobado')) ramo.classList.add('disponible');
+                    if (!ramo.classList.contains('aprobado')) {
+                        ramo.classList.add('disponible');
+                    }
+                    ramo.title = ""; // Limpiar tooltip
                 } else {
                     ramo.classList.add('bloqueado');
                     ramo.classList.remove('disponible', 'aprobado');
+                    if (requisito) {
+                        ramo.title = "Pre-requisito pendiente: " + requisito.innerText;
+                    }
                 }
             });
+
+            // 2. Guardar en LocalStorage
+            todosLosRamos.forEach(ramo => {
+                progreso[ramo.id] = ramo.classList.contains('aprobado');
+            });
+            localStorage.setItem('progresoMallaAntropo', JSON.stringify(progreso));
         }
-        window.onload = actualizar;
+
+        function cargarProgreso() {
+            const guardado = JSON.parse(localStorage.getItem('progresoMallaAntropo'));
+            if (guardado) {
+                Object.keys(guardado).forEach(id => {
+                    const ramo = document.getElementById(id);
+                    if (ramo && guardado[id]) {
+                        ramo.classList.remove('disponible', 'bloqueado');
+                        ramo.classList.add('aprobado');
+                    }
+                });
+            }
+            actualizarYGuardar(); 
+        }
+
+        window.onload = cargarProgreso;
     </script>
 </body>
 </html>
