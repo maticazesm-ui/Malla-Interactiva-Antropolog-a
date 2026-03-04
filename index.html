@@ -3,38 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malla Interactiva Antropología</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Malla Antropología Interactiva</title>
+    <style>
+        /* --- ESTILOS (CSS) --- */
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 30px;
+        }
+
+        /* Contenedor que ordena los semestres en columnas */
+        .malla-container {
+            display: flex;
+            gap: 15px;
+            overflow-x: auto; /* Permite scroll horizontal en celulares */
+            padding-bottom: 20px;
+            align-items: flex-start;
+        }
+
+        /* Cada columna de semestre */
+        .semestre {
+            min-width: 200px;
+            background: #ffffff;
+            border-radius: 12px;
+            padding: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .semestre h3 {
+            text-align: center;
+            color: #3498db;
+            margin: 5px 0;
+            border-bottom: 2px solid #f0f2f5;
+        }
+
+        /* Los cuadritos de los ramos */
+        .ramo {
+            padding: 15px 10px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            text-align: center;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+            cursor: pointer;
+            border: 2px solid transparent;
+            line-height: 1.2;
+        }
+
+        /* COLOR: Pendiente (Rosado) */
+        .disponible {
+            background-color: #fce4ec;
+            color: #880e4f;
+            border-color: #f8bbd0;
+        }
+
+        /* COLOR: Aprobado (Morado y Tachado) */
+        .aprobado {
+            background-color: #6a1b9a !important;
+            color: white !important;
+            text-decoration: line-through;
+            border-color: #4a148c;
+        }
+
+        /* COLOR: Bloqueado (Gris) */
+        .bloqueado {
+            background-color: #e0e0e0;
+            color: #9e9e9e;
+            cursor: not-allowed;
+            pointer-events: none;
+            border-color: #bdbdbd;
+        }
+
+        .ramo:hover:not(.bloqueado) {
+            transform: scale(1.03);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+    </style>
 </head>
 <body>
-    <h1>Malla Curricular Interactiva</h1>
-    
+
+    <h1>Mi Malla de Antropología</h1>
+
     <div class="malla-container">
         <div class="semestre">
             <h3>I</h3>
-            <div id="ant101" class="ramo disponible" onclick="toggleRamo('ant101')">Paradigmas Sociológicos</div>
-            <div id="ant102" class="ramo disponible" onclick="toggleRamo('ant102')">Razonamiento Cuantitativo</div>
-            <div id="ant103" class="ramo disponible" onclick="toggleRamo('ant103')">Paradigmas Antropológicos</div>
-            <div id="ant104" class="ramo disponible" onclick="toggleRamo('ant104')">Lenguaje y Pensamiento</div>
+            <div id="r1" class="ramo disponible" onclick="toggleRamo('r1')">Paradigmas Sociológicos</div>
+            <div id="r2" class="ramo disponible" onclick="toggleRamo('r2')">Razonamiento Cuantitativo</div>
+            <div id="r3" class="ramo disponible" onclick="toggleRamo('r3')">Paradigmas Antropológicos</div>
+            <div id="r4" class="ramo disponible" onclick="toggleRamo('r4')">Lenguaje y Pensamiento</div>
         </div>
 
         <div class="semestre">
             <h3>II</h3>
-            <div id="ant201" class="ramo bloqueado" data-req="ant101" onclick="toggleRamo('ant201')">Sociedad y Cultura Lat.</div>
-            <div id="ant202" class="ramo disponible" onclick="toggleRamo('ant202')">Taller de Escritura</div>
-            <div id="ant203" class="ramo bloqueado" data-req="ant103" onclick="toggleRamo('ant203')">Antropología del Parentesco</div>
-            <div id="ant204" class="ramo disponible" onclick="toggleRamo('ant204')">Fundamentos Biológicos</div>
+            <div id="r5" class="ramo bloqueado" data-req="r1" onclick="toggleRamo('r5')">Sociedad y Cultura Lat.</div>
+            <div id="r6" class="ramo disponible" onclick="toggleRamo('r6')">Taller de Escritura</div>
+            <div id="r7" class="ramo bloqueado" data-req="r3" onclick="toggleRamo('r7')">Antropología del Parentesco</div>
+            <div id="r8" class="ramo disponible" onclick="toggleRamo('r8')">Fundamentos Biológicos</div>
         </div>
 
         <div class="semestre">
             <h3>III</h3>
-            <div id="ant301" class="ramo bloqueado" data-req="ant103" onclick="toggleRamo('ant301')">Teoría Antropológica I</div>
-            <div id="ant302" class="ramo bloqueado" data-req="ant102" onclick="toggleRamo('ant302')">Metodología Inv. Social</div>
-            <div id="ant303" class="ramo bloqueado" data-req="ant203" onclick="toggleRamo('ant303')">Arqueología General</div>
+            <div id="r9" class="ramo bloqueado" data-req="r3" onclick="toggleRamo('r9')">Teoría Antropológica I</div>
+            <div id="r10" class="ramo bloqueado" data-req="r2" onclick="toggleRamo('r10')">Metodología Inv. Social</div>
+            <div id="r11" class="ramo bloqueado" data-req="r7" onclick="toggleRamo('r11')">Arqueología General</div>
         </div>
 
         </div>
 
-    <script src="script.js"></script>
+    <script>
+        /* --- LÓGICA (JavaScript) --- */
+        function toggleRamo(id) {
+            const ramo = document.getElementById(id);
+            
+            if (ramo.classList.contains('aprobado')) {
+                ramo.classList.remove('aprobado');
+                ramo.classList.add('disponible');
+            } else {
+                ramo.classList.add('aprobado');
+                ramo.classList.remove('disponible');
+            }
+            actualizarMalla();
+        }
+
+        function actualizarMalla() {
+            const bloqueados = document.querySelectorAll('.ramo[data-req]');
+            
+            bloqueados.forEach(ramo => {
+                const idRequisito = ramo.getAttribute('data-req');
+                const requisito = document.getElementById(idRequisito);
+
+                if (requisito && requisito.classList.contains('aprobado')) {
+                    ramo.classList.remove('bloqueado');
+                    if (!ramo.classList.contains('aprobado')) {
+                        ramo.classList.add('disponible');
+                    }
+                    ramo.style.pointerEvents = "auto";
+                } else {
+                    ramo.classList.add('bloqueado');
+                    ramo.classList.remove('disponible');
+                    ramo.classList.remove('aprobado');
+                    ramo.style.pointerEvents = "none";
+                }
+            });
+        }
+        
+        // Ejecutar al inicio
+        window.onload = actualizarMalla;
+    </script>
 </body>
 </html>
