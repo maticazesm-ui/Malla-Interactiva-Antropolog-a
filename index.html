@@ -20,10 +20,15 @@
         h1 { margin: 0 0 5px 0; font-weight: 800; font-size: 2.1rem; }
         .subtitulo { font-size: 1rem; color: #606c38; margin-bottom: 15px; font-weight: 600; }
 
-        .avance-card { background: rgba(255, 255, 255, 0.5); max-width: 400px; margin: 0 auto 15px auto; padding: 12px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); text-align: center; border: 1px solid rgba(0,0,0,0.05); }
+        .avance-card { background: rgba(255, 255, 255, 0.5); max-width: 400px; margin: 0 auto 10px auto; padding: 12px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); text-align: center; border: 1px solid rgba(0,0,0,0.05); }
         .avance-label { font-weight: 700; margin-bottom: 8px; display: block; font-size: 0.9rem; }
         .progress-container { background-color: rgba(0,0,0,0.05); border-radius: 20px; height: 12px; overflow: hidden; }
         #progress-bar { height: 100%; width: 0%; background-color: #606c38; transition: width 0.8s ease; }
+
+        /* LEYENDA */
+        .leyenda { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
+        .leyenda-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; }
+        .circulo { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
 
         .malla-container { overflow-x: auto; padding-bottom: 30px; }
         .malla-wrapper-horizontal { display: flex; gap: 15px; padding: 10px; width: max-content; }
@@ -71,6 +76,13 @@
         <span class="avance-label" id="label-avance">Avance de Carrera: 0%</span>
         <div class="progress-container"><div id="progress-bar"></div></div>
     </div>
+
+    <div class="leyenda">
+        <div class="leyenda-item"><div class="circulo" style="background: var(--celeste);"></div> Ramo Malla</div>
+        <div class="leyenda-item"><div class="circulo" style="background: var(--amarillo-ofg);"></div> OFG (Clic derecho para editar)</div>
+        <div class="leyenda-item"><div class="circulo" style="background: var(--marron-optativo);"></div> Optativo Profundización</div>
+        <div class="leyenda-item"><div class="circulo" style="background: var(--azul-terminal);"></div> Ramo Terminal</div>
+    </div>
 </header>
 
 <div class="malla-container">
@@ -96,8 +108,8 @@
                     <div id="r2_1" class="ramo" data-sigla="SOL214" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
                     <div id="r2_2" class="ramo" data-sigla="ANT1610" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
                     <div id="r2_3" class="ramo" data-sigla="ANT1600" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_3')">Prehistoria General</div>
-                    <div id="r2_4" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
-                    <div id="r2_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r2_5')">OFG</div>
+                    <div id="r2_4" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_4')" oncontextmenu="editOFG(event, 'r2_4')">Filosofía: ¿Para qué?</div>
+                    <div id="r2_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r2_5')" oncontextmenu="editOFG(event, 'r2_5')">OFG</div>
                 </div>
             </div>
         </div>
@@ -109,17 +121,17 @@
                     <div class="semestre-header">III</div>
                     <div id="r3_1" class="ramo" data-sigla="ANT135" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_1')">Antropología del Lenguaje</div>
                     <div id="r3_2" class="ramo" data-sigla="SOL126S" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_2')">Metodología de la Investigación Social</div>
-                    <div id="r3_3" class="ramo" data-sigla="ANT140" data-creditos="10" data-req="r1_3" data-req-name="Paradigmas Antropológicos (ANT100)" onclick="toggle('r3_3')">Teoría Antropológica I</div>
+                    <div id="r3_3" class="ramo" data-sigla="ANT140" data-req="r1_3" data-creditos="10" data-req-name="Paradigmas Antropológicos" onclick="toggle('r3_3')">Teoría Antropológica I</div>
                     <div id="r3_4" class="ramo" data-sigla="ANT107" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_4')">Ética Social</div>
-                    <div id="r3_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r3_5')">OFG</div>
+                    <div id="r3_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r3_5')" oncontextmenu="editOFG(event, 'r3_5')">OFG</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">IV</div>
                     <div id="r4_1" class="ramo" data-sigla="ANT302Q" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_1')">Prehistoria de América</div>
                     <div id="r4_2" class="ramo" data-sigla="ANT170" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_2')">Introducción a la Etnografía</div>
-                    <div id="r4_3" class="ramo" data-sigla="ANT150" data-creditos="10" data-req="r1_3" data-req-name="Paradigmas Antropológicos (ANT100)" onclick="toggle('r4_3')">Teoría Antropológica II</div>
+                    <div id="r4_3" class="ramo" data-sigla="ANT150" data-req="r1_3" data-creditos="10" data-req-name="Paradigmas Antropológicos" onclick="toggle('r4_3')">Teoría Antropológica II</div>
                     <div id="r4_4" class="ramo" data-sigla="ANT133" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_4')">Introducción a la Investigación Cualitativa</div>
-                    <div id="r4_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r4_5')">OFG</div>
+                    <div id="r4_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r4_5')" oncontextmenu="editOFG(event, 'r4_5')">OFG</div>
                 </div>
             </div>
         </div>
@@ -132,6 +144,24 @@
         const el = document.getElementById(id);
         if (el.classList.contains('bloqueado')) return;
         el.classList.toggle('aprobado');
+        actualizar();
+    }
+
+    // FUNCIÓN PARA PERSONALIZAR OFG
+    function editOFG(event, id) {
+        event.preventDefault(); // Evita el menú normal del clic derecho
+        const el = document.getElementById(id);
+        
+        const nuevoNombre = prompt("Nombre del OFG:", el.innerText);
+        if (nuevoNombre === null) return;
+        
+        const nuevaSigla = prompt("Sigla del OFG:", el.getAttribute('data-sigla'));
+        const nuevosCreditos = prompt("Créditos:", el.getAttribute('data-creditos'));
+        
+        el.innerText = nuevoNombre || "OFG";
+        el.setAttribute('data-sigla', nuevaSigla || "-");
+        el.setAttribute('data-creditos', nuevosCreditos || "10");
+        
         actualizar();
     }
 
@@ -159,18 +189,32 @@
         document.getElementById('progress-bar').style.width = porcentaje + '%';
         document.getElementById('label-avance').innerText = `Avance de Carrera: ${porcentaje}%`;
 
-        // Guardar
+        // Guardar estado y datos personalizados
         const save = {};
-        ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
-        localStorage.setItem('malla_antro_v17', JSON.stringify(save));
+        ramos.forEach(r => {
+            save[r.id] = {
+                aprobado: r.classList.contains('aprobado'),
+                nombre: r.innerText,
+                sigla: r.getAttribute('data-sigla'),
+                creditos: r.getAttribute('data-creditos')
+            };
+        });
+        localStorage.setItem('malla_antro_v18', JSON.stringify(save));
     }
 
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antro_v17'));
+        const save = JSON.parse(localStorage.getItem('malla_antro_v18'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
-                if (el && save[id]) el.classList.add('aprobado');
+                if (el) {
+                    if (save[id].aprobado) el.classList.add('aprobado');
+                    if (el.classList.contains('ofg')) {
+                        el.innerText = save[id].nombre;
+                        el.setAttribute('data-sigla', save[id].sigla);
+                        el.setAttribute('data-creditos', save[id].creditos);
+                    }
+                }
             });
         }
         actualizar();
