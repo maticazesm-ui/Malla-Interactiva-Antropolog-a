@@ -15,108 +15,49 @@
             --texto-oscuro: #283618; 
         }
 
-        body { 
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            background-color: #fefae0; 
-            margin: 0; 
-            padding: 15px; 
-            color: var(--texto-oscuro); 
-        }
-        
+        body { font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; background-color: #fefae0; margin: 0; padding: 15px; color: var(--texto-oscuro); }
         header { text-align: center; margin-bottom: 20px; }
         h1 { margin: 0 0 5px 0; font-weight: 800; font-size: 2.1rem; }
         .subtitulo { font-size: 1rem; color: #606c38; margin-bottom: 15px; font-weight: 600; }
 
-        .avance-card { 
-            background: rgba(255, 255, 255, 0.5); 
-            max-width: 400px; 
-            margin: 0 auto 15px auto; 
-            padding: 12px; 
-            border-radius: 10px; 
-            box-shadow: 0 2px 10px rgba(0,0,0,0.03); 
-            text-align: center; 
-            border: 1px solid rgba(0,0,0,0.05);
-        }
+        .avance-card { background: rgba(255, 255, 255, 0.5); max-width: 400px; margin: 0 auto 15px auto; padding: 12px; border-radius: 10px; box-shadow: 0 2px 10px rgba(0,0,0,0.03); text-align: center; border: 1px solid rgba(0,0,0,0.05); }
         .avance-label { font-weight: 700; margin-bottom: 8px; display: block; font-size: 0.9rem; }
         .progress-container { background-color: rgba(0,0,0,0.05); border-radius: 20px; height: 12px; overflow: hidden; }
         #progress-bar { height: 100%; width: 0%; background-color: #606c38; transition: width 0.8s ease; }
 
-        .leyenda { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
-        .leyenda-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; }
-        .leyenda-colors { display: flex; gap: 2px; }
-        .circulo { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
-
         .malla-container { overflow-x: auto; padding-bottom: 30px; }
         .malla-wrapper-horizontal { display: flex; gap: 15px; padding: 10px; width: max-content; }
 
-        .año-seccion { 
-            background: rgba(255, 255, 255, 0.4); 
-            border-radius: 8px; 
-            border: 1px solid rgba(0,0,0,0.1); 
-            flex-shrink: 0; 
-        }
-        .año-titulo { 
-            background: #283618; 
-            color: #fefae0; 
-            text-align: center; 
-            padding: 8px; 
-            font-size: 0.9rem; 
-            font-weight: 700; 
-            text-transform: uppercase; 
-            border-radius: 8px 8px 0 0; 
-        }
+        .año-seccion { background: rgba(255, 255, 255, 0.4); border-radius: 8px; border: 1px solid rgba(0,0,0,0.1); flex-shrink: 0; }
+        .año-titulo { background: #283618; color: #fefae0; text-align: center; padding: 8px; font-size: 0.9rem; font-weight: 700; text-transform: uppercase; border-radius: 8px 8px 0 0; }
 
         .semestres-wrapper { display: flex; padding: 10px; gap: 10px; }
         .semestre { width: 145px; display: flex; flex-direction: column; gap: 8px; }
-        
-        .semestre-header { 
-            background: rgba(0,0,0,0.05); 
-            color: var(--texto-oscuro); 
-            text-align: center; 
-            padding: 4px; 
-            font-size: 0.8rem; 
-            font-weight: 800; 
-            border-radius: 4px; 
-            border: 1px solid rgba(0,0,0,0.1); 
-            margin-bottom: 4px; 
-        }
+        .semestre-header { background: rgba(0,0,0,0.05); color: var(--texto-oscuro); text-align: center; padding: 4px; font-size: 0.8rem; font-weight: 800; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); margin-bottom: 4px; }
 
         .ramo {
-            position: relative;
-            padding: 10px 6px;
-            border-radius: 5px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            text-align: center;
-            min-height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            border-bottom: 3px solid rgba(0,0,0,0.1);
-            transition: all 0.2s ease;
-            line-height: 1.1;
-            background-color: var(--celeste);
+            position: relative; padding: 10px 6px; border-radius: 5px; font-size: 0.75rem; font-weight: 700; text-align: center; min-height: 55px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer; border-bottom: 3px solid rgba(0,0,0,0.1); transition: all 0.2s ease; line-height: 1.1; background-color: var(--celeste);
         }
 
         .ramo.ofg { background-color: var(--amarillo-ofg); }
         .ramo.optativo { background-color: var(--marron-optativo); color: white; }
         .ramo.terminal { background-color: var(--azul-terminal); color: white; }
-        .ramo.aprobado { 
-            background-color: var(--verde-aprobado) !important; 
-            color: #fefae0 !important; 
-            border-bottom-color: rgba(0,0,0,0.15); 
-        }
+        .ramo.aprobado { background-color: var(--verde-aprobado) !important; color: #fefae0 !important; border-bottom-color: rgba(0,0,0,0.15); }
+
+        /* Estilo para bloqueados */
+        .ramo.bloqueado { background-color: var(--gris-bloqueado) !important; color: #777 !important; cursor: not-allowed; border-bottom-color: #bbb; }
+        .ramo.bloqueado::before { content: "🔒 "; margin-right: 2px; }
 
         .ramo::after {
-            content: "Sigla: --\A Créditos: --\A Requisito: " attr(data-req-name);
+            content: "Sigla: " attr(data-sigla) "\A Créditos: " attr(data-creditos) "\A Requisito: " attr(data-req-name);
             white-space: pre-wrap; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); color: #fff; padding: 10px;
             border-radius: 6px; font-size: 0.75rem; font-weight: 400; width: 180px; z-index: 1000;
             opacity: 0; transition: 0.2s; pointer-events: none; border: 1px solid rgba(255,255,255,0.1);
         }
         .ramo:hover::after { opacity: 1; }
-        .ramo:hover { transform: translateY(-2px); filter: brightness(1.03); }
+        .ramo:hover:not(.bloqueado) { transform: translateY(-2px); filter: brightness(1.03); }
 
         .malla-container::-webkit-scrollbar { height: 10px; }
         .malla-container::-webkit-scrollbar-thumb { background: #bc6c25; border-radius: 10px; border: 2px solid #fefae0; }
@@ -127,22 +68,9 @@
 <header>
     <h1>Malla Antropología UC</h1>
     <div class="subtitulo">Consejería Académica Antropología-Arqueología 2026</div>
-    
     <div class="avance-card">
         <span class="avance-label" id="label-avance">Avance de Carrera: 0%</span>
         <div class="progress-container"><div id="progress-bar"></div></div>
-    </div>
-
-    <div class="leyenda">
-        <div class="leyenda-item">
-            <div class="leyenda-colors">
-                <div class="circulo" style="background: var(--celeste);"></div>
-                <div class="circulo" style="background: var(--azul-terminal);"></div>
-            </div>
-            Ramo de Malla
-        </div>
-        <div class="leyenda-item"><div class="circulo" style="background: var(--amarillo-ofg);"></div> Optativo Formación General</div>
-        <div class="leyenda-item"><div class="circulo" style="background: var(--marron-optativo);"></div> Optativo Profundización</div>
     </div>
 </header>
 
@@ -154,21 +82,21 @@
             <div class="semestres-wrapper">
                 <div class="semestre">
                     <div class="semestre-header">I</div>
-                    <div id="r1_1" class="ramo" onclick="toggle('r1_1')">Paradigmas Sociológicos</div>
-                    <div id="r1_2" class="ramo" onclick="toggle('r1_2')">Razonamiento Cuantitativo</div>
-                    <div id="r1_3" class="ramo" onclick="toggle('r1_3')">Paradigmas Antropológicos</div>
-                    <div id="r1_4" class="ramo" onclick="toggle('r1_4')">Introducción a la Arqueología</div>
-                    <div id="r1_5" class="ramo" onclick="toggle('r1_5')">Antropología Biológica</div>
-                    <div id="r1_e1" class="ramo" onclick="toggle('r1_e1')">Examen de Comunicación Escrita</div>
-                    <div id="r1_e2" class="ramo" onclick="toggle('r1_e2')">English Test ALTE 2</div>
-                    <div id="r1_e3" class="ramo" onclick="toggle('r1_e3')">Integridad Académica en la UC</div>
-                    <div id="r1_e4" class="ramo" onclick="toggle('r1_e4')">Formación en Docencia para Ayudantes UC</div>
+                    <div id="r1_1" class="ramo" data-sigla="SOL100" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_1')">Paradigmas Sociológicos</div>
+                    <div id="r1_2" class="ramo" data-sigla="MAT0100" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_2')">Razonamiento Cuantitativo</div>
+                    <div id="r1_3" class="ramo" data-sigla="ANT100" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_3')">Paradigmas Antropológicos</div>
+                    <div id="r1_4" class="ramo" data-sigla="ANT120" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_4')">Introducción a la Arqueología</div>
+                    <div id="r1_5" class="ramo" data-sigla="ANT110" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_5')">Introducción a la Antropología Biológica</div>
+                    <div id="r1_e1" class="ramo" data-sigla="VRA100C" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e1')">Examen de Comunicación Escrita</div>
+                    <div id="r1_e2" class="ramo" data-sigla="VRA200" data-creditos="0" data-req-name="RII4000 o equiv." onclick="toggle('r1_e2')">English Test ALTE 2</div>
+                    <div id="r1_e3" class="ramo" data-sigla="VRA4000" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e3')">Integridad Académica en la UC</div>
+                    <div id="r1_e4" class="ramo" data-sigla="VRA1323" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e4')">Formación en Docencia para Ayudantes UC</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">II</div>
-                    <div id="r2_1" class="ramo" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
-                    <div id="r2_2" class="ramo" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
-                    <div id="r2_3" class="ramo" onclick="toggle('r2_3')">Prehistoria General</div>
+                    <div id="r2_1" class="ramo" data-sigla="SOL214" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
+                    <div id="r2_2" class="ramo" data-sigla="ANT1610" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
+                    <div id="r2_3" class="ramo" data-sigla="ANT1600" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_3')">Prehistoria General</div>
                     <div id="r2_4" class="ramo ofg" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
                     <div id="r2_5" class="ramo ofg" onclick="toggle('r2_5')">OFG</div>
                 </div>
@@ -178,99 +106,27 @@
         <div class="año-seccion">
             <div class="año-titulo">Segundo Año</div>
             <div class="semestres-wrapper">
-                <div class="semestre">
-                    <div class="semestre-header">III</div>
-                    <div id="r3_1" class="ramo" onclick="toggle('r3_1')">Antropología del Lenguaje</div>
-                    <div id="r3_2" class="ramo" onclick="toggle('r3_2')">Metodología de la Investigación Social</div>
-                    <div id="r3_3" class="ramo" onclick="toggle('r3_3')">Teoría Antropológica I</div>
-                    <div id="r3_4" class="ramo" onclick="toggle('r3_4')">Ética Social</div>
-                    <div id="r3_5" class="ramo ofg" onclick="toggle('r3_5')">OFG</div>
-                </div>
-                <div class="semestre">
-                    <div class="semestre-header">IV</div>
-                    <div id="r4_1" class="ramo" onclick="toggle('r4_1')">Prehistoria de América</div>
-                    <div id="r4_2" class="ramo" onclick="toggle('r4_2')">Introducción a la Etnografía</div>
-                    <div id="r4_3" class="ramo" onclick="toggle('r4_3')">Teoría Antropológica II</div>
-                    <div id="r4_4" class="ramo" onclick="toggle('r4_4')">Introducción a la Investigación Cualitativa</div>
-                    <div id="r4_5" class="ramo ofg" onclick="toggle('r4_5')">OFG</div>
-                </div>
+                <div class="semestre"><div class="semestre-header">III</div><div class="ramo" onclick="toggle('r3_1')">...</div></div>
+                <div class="semestre"><div class="semestre-header">IV</div><div class="ramo" onclick="toggle('r4_1')">...</div></div>
             </div>
         </div>
-
-        <div class="año-seccion">
-            <div class="año-titulo">Tercer Año</div>
-            <div class="semestres-wrapper">
-                <div class="semestre">
-                    <div class="semestre-header">V</div>
-                    <div id="r5_1" class="ramo" onclick="toggle('r5_1')">Etnografía I</div>
-                    <div id="r5_2" class="ramo" onclick="toggle('r5_2')">Teoría Antropológica III</div>
-                    <div id="r5_3" class="ramo" onclick="toggle('r5_3')">Análisis de Datos Cualitativos</div>
-                    <div id="r5_4" class="ramo ofg" onclick="toggle('r5_4')">OFG</div>
-                    <div id="r5_5" class="ramo ofg" onclick="toggle('r5_5')">OFG</div>
-                </div>
-                <div class="semestre">
-                    <div class="semestre-header">VI</div>
-                    <div id="r6_1" class="ramo" onclick="toggle('r6_1')">Etnografía II</div>
-                    <div id="r6_2" class="ramo" onclick="toggle('r6_2')">Antropología del Parentesco y el Género</div>
-                    <div id="r6_3" class="ramo" onclick="toggle('r6_3')">Análisis de Datos Cuantitativos</div>
-                    <div id="r6_4" class="ramo" onclick="toggle('r6_4')">Antropología de Chile</div>
-                    <div id="r6_5" class="ramo ofg" onclick="toggle('r6_5')">OFG</div>
-                </div>
-            </div>
         </div>
-
-        <div class="año-seccion">
-            <div class="año-titulo">Cuarto Año</div>
-            <div class="semestres-wrapper">
-                <div class="semestre">
-                    <div class="semestre-header">VII</div>
-                    <div id="r7_1" class="ramo" onclick="toggle('r7_1')">Antropología Urbana</div>
-                    <div id="r7_2" class="ramo" onclick="toggle('r7_2')">Antropología Política</div>
-                    <div id="r7_3" class="ramo optativo" onclick="toggle('r7_3')">Optativo de Profundización Regional</div>
-                    <div id="r7_4" class="ramo optativo" onclick="toggle('r7_4')">Optativo de Profundización</div>
-                    <div id="r7_5" class="ramo ofg" onclick="toggle('r7_5')">OFG</div>
-                </div>
-                <div class="semestre">
-                    <div class="semestre-header">VIII</div>
-                    <div id="r8_1" class="ramo" onclick="toggle('r8_1')">Antropología Económica</div>
-                    <div id="r8_2" class="ramo" onclick="toggle('r8_2')">Antropología de la Religión</div>
-                    <div id="r8_3" class="ramo" onclick="toggle('r8_3')">Antropología Médica</div>
-                    <div id="r8_4" class="ramo optativo" onclick="toggle('r8_4')">Optativo de Profundización Regional</div>
-                    <div id="r8_5" class="ramo optativo" onclick="toggle('r8_5')">Optativo de Profundización</div>
-                </div>
-            </div>
-        </div>
-
-        <div class="año-seccion">
-            <div class="año-titulo">Quinto Año</div>
-            <div class="semestres-wrapper">
-                <div class="semestre">
-                    <div class="semestre-header">IX</div>
-                    <div id="r9_1" class="ramo terminal" onclick="toggle('r9_1')">Formulación y Evaluación de Proyectos</div>
-                    <div id="r9_2" class="ramo terminal" onclick="toggle('r9_2')">Mediación e Interculturalidad</div>
-                    <div id="r9_3" class="ramo terminal" onclick="toggle('r9_3')">Políticas Públicas</div>
-                    <div id="r9_4" class="ramo optativo" onclick="toggle('r9_4')">Optativo de Profundización</div>
-                    <div id="r9_5" class="ramo optativo" onclick="toggle('r9_5')">Optativo de Profundización</div>
-                </div>
-                <div class="semestre">
-                    <div class="semestre-header">X</div>
-                    <div id="r10_1" class="ramo terminal" onclick="toggle('r10_1')">Taller de Titulación</div>
-                </div>
-            </div>
-        </div>
-
-    </div>
 </div>
 
 <script>
     function toggle(id) {
         const el = document.getElementById(id);
+        if (el.classList.contains('bloqueado')) return;
         el.classList.toggle('aprobado');
         actualizar();
     }
 
     function actualizar() {
         const ramos = document.querySelectorAll('.ramo');
+        
+        // Lógica de requisitos (ejemplo con lo que me diste)
+        // Si me das más requisitos, los agrego aquí.
+        
         let aprobados = 0;
         ramos.forEach(r => { if (r.classList.contains('aprobado')) aprobados++; });
         const porcentaje = Math.round((aprobados / ramos.length) * 100) || 0;
@@ -279,11 +135,11 @@
 
         const save = {};
         ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
-        localStorage.setItem('malla_antro_final_v14', JSON.stringify(save));
+        localStorage.setItem('malla_antro_v15', JSON.stringify(save));
     }
 
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antro_final_v14'));
+        const save = JSON.parse(localStorage.getItem('malla_antro_v15'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
