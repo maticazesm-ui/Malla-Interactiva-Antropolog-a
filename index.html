@@ -45,7 +45,6 @@
         .ramo.terminal { background-color: var(--azul-terminal); color: white; }
         .ramo.aprobado { background-color: var(--verde-aprobado) !important; color: #fefae0 !important; border-bottom-color: rgba(0,0,0,0.15); }
 
-        /* Estilo para bloqueados */
         .ramo.bloqueado { background-color: var(--gris-bloqueado) !important; color: #777 !important; cursor: not-allowed; border-bottom-color: #bbb; }
         .ramo.bloqueado::before { content: "🔒 "; margin-right: 2px; }
 
@@ -53,8 +52,8 @@
             content: "Sigla: " attr(data-sigla) "\A Créditos: " attr(data-creditos) "\A Requisito: " attr(data-req-name);
             white-space: pre-wrap; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); color: #fff; padding: 10px;
-            border-radius: 6px; font-size: 0.75rem; font-weight: 400; width: 180px; z-index: 1000;
-            opacity: 0; transition: 0.2s; pointer-events: none; border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px; font-size: 0.72rem; font-weight: 400; width: 190px; z-index: 1000;
+            opacity: 0; transition: 0.2s; pointer-events: none; border: 1px solid rgba(255,255,255,0.1); text-align: left;
         }
         .ramo:hover::after { opacity: 1; }
         .ramo:hover:not(.bloqueado) { transform: translateY(-2px); filter: brightness(1.03); }
@@ -88,7 +87,7 @@
                     <div id="r1_4" class="ramo" data-sigla="ANT120" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_4')">Introducción a la Arqueología</div>
                     <div id="r1_5" class="ramo" data-sigla="ANT110" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_5')">Introducción a la Antropología Biológica</div>
                     <div id="r1_e1" class="ramo" data-sigla="VRA100C" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e1')">Examen de Comunicación Escrita</div>
-                    <div id="r1_e2" class="ramo" data-sigla="VRA200" data-creditos="0" data-req-name="RII4000 o equiv." onclick="toggle('r1_e2')">English Test ALTE 2</div>
+                    <div id="r1_e2" class="ramo" data-sigla="VRA200" data-creditos="0" data-req-name="Especial" onclick="toggle('r1_e2')">English Test ALTE 2</div>
                     <div id="r1_e3" class="ramo" data-sigla="VRA4000" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e3')">Integridad Académica en la UC</div>
                     <div id="r1_e4" class="ramo" data-sigla="VRA1323" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e4')">Formación en Docencia para Ayudantes UC</div>
                 </div>
@@ -97,8 +96,8 @@
                     <div id="r2_1" class="ramo" data-sigla="SOL214" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
                     <div id="r2_2" class="ramo" data-sigla="ANT1610" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
                     <div id="r2_3" class="ramo" data-sigla="ANT1600" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_3')">Prehistoria General</div>
-                    <div id="r2_4" class="ramo ofg" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
-                    <div id="r2_5" class="ramo ofg" onclick="toggle('r2_5')">OFG</div>
+                    <div id="r2_4" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
+                    <div id="r2_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r2_5')">OFG</div>
                 </div>
             </div>
         </div>
@@ -106,11 +105,26 @@
         <div class="año-seccion">
             <div class="año-titulo">Segundo Año</div>
             <div class="semestres-wrapper">
-                <div class="semestre"><div class="semestre-header">III</div><div class="ramo" onclick="toggle('r3_1')">...</div></div>
-                <div class="semestre"><div class="semestre-header">IV</div><div class="ramo" onclick="toggle('r4_1')">...</div></div>
+                <div class="semestre">
+                    <div class="semestre-header">III</div>
+                    <div id="r3_1" class="ramo" data-sigla="ANT135" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_1')">Antropología del Lenguaje</div>
+                    <div id="r3_2" class="ramo" data-sigla="SOL126S" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_2')">Metodología de la Investigación Social</div>
+                    <div id="r3_3" class="ramo" data-sigla="ANT140" data-creditos="10" data-req="r1_3" data-req-name="Paradigmas Antropológicos (ANT100)" onclick="toggle('r3_3')">Teoría Antropológica I</div>
+                    <div id="r3_4" class="ramo" data-sigla="ANT107" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_4')">Ética Social</div>
+                    <div id="r3_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r3_5')">OFG</div>
+                </div>
+                <div class="semestre">
+                    <div class="semestre-header">IV</div>
+                    <div id="r4_1" class="ramo" data-sigla="ANT302Q" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_1')">Prehistoria de América</div>
+                    <div id="r4_2" class="ramo" data-sigla="ANT170" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_2')">Introducción a la Etnografía</div>
+                    <div id="r4_3" class="ramo" data-sigla="ANT150" data-creditos="10" data-req="r1_3" data-req-name="Paradigmas Antropológicos (ANT100)" onclick="toggle('r4_3')">Teoría Antropológica II</div>
+                    <div id="r4_4" class="ramo" data-sigla="ANT133" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_4')">Introducción a la Investigación Cualitativa</div>
+                    <div id="r4_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r4_5')">OFG</div>
+                </div>
             </div>
         </div>
-        </div>
+
+    </div>
 </div>
 
 <script>
@@ -124,22 +138,35 @@
     function actualizar() {
         const ramos = document.querySelectorAll('.ramo');
         
-        // Lógica de requisitos (ejemplo con lo que me diste)
-        // Si me das más requisitos, los agrego aquí.
-        
+        // Lógica de requisitos
+        ramos.forEach(r => {
+            const reqId = r.getAttribute('data-req');
+            if (reqId) {
+                const reqEl = document.getElementById(reqId);
+                if (!reqEl.classList.contains('aprobado')) {
+                    r.classList.add('bloqueado');
+                    r.classList.remove('aprobado');
+                } else {
+                    r.classList.remove('bloqueado');
+                }
+            }
+        });
+
+        // Avance
         let aprobados = 0;
         ramos.forEach(r => { if (r.classList.contains('aprobado')) aprobados++; });
         const porcentaje = Math.round((aprobados / ramos.length) * 100) || 0;
         document.getElementById('progress-bar').style.width = porcentaje + '%';
         document.getElementById('label-avance').innerText = `Avance de Carrera: ${porcentaje}%`;
 
+        // Guardar
         const save = {};
         ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
-        localStorage.setItem('malla_antro_v15', JSON.stringify(save));
+        localStorage.setItem('malla_antro_v17', JSON.stringify(save));
     }
 
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antro_v15'));
+        const save = JSON.parse(localStorage.getItem('malla_antro_v17'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
