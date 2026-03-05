@@ -6,19 +6,21 @@
     <title>Malla Antropología UC</title>
     <style>
         :root {
-            /* Colores con transparencia (0.8) para que armonicen con el fondo */
-            --celeste: rgba(142, 202, 230, 0.85);
+            /* NUEVO AZUL HIELO translúcido (0.85) */
+            --celeste: rgba(202, 240, 248, 0.85);
+            /* Otros colores con transparencia para armonizar */
             --verde-aprobado: rgba(96, 108, 56, 0.9);
             --amarillo-ofg: rgba(233, 196, 106, 0.85);
             --marron-optativo: rgba(127, 85, 57, 0.85);
             --azul-terminal: rgba(0, 48, 73, 0.85);
             --gris-bloqueado: rgba(209, 209, 209, 0.8);
-            --texto-oscuro: #283618; /* Un verde muy oscuro para combinar con el crema */
+            /* Un verde muy oscuro para el texto */
+            --texto-oscuro: #283618; 
         }
 
         body { 
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            background-color: #fefae0; /* Tu nuevo color de fondo */
+            background-color: #fefae0; /* Color crema cálido */
             margin: 0; 
             padding: 15px; 
             color: var(--texto-oscuro); 
@@ -73,7 +75,7 @@
 
         .semestres-wrapper { display: flex; padding: 10px; gap: 10px; }
         .semestre { 
-            width: 145px; /* Ajuste perfecto para ver hasta el 5to año parcialmente */
+            width: 145px; /* Ancho perfecto para visibilidad panorámica */
             display: flex; 
             flex-direction: column; 
             gap: 8px; 
@@ -292,11 +294,11 @@
 
         const save = {};
         ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
-        localStorage.setItem('malla_antro_final_v12', JSON.stringify(save));
+        localStorage.setItem('malla_antro_final_v13', JSON.stringify(save));
     }
 
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antro_final_v12'));
+        const save = JSON.parse(localStorage.getItem('malla_antro_final_v13'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
