@@ -11,137 +11,101 @@
             --amarillo-ofg: #e9c46a;
             --marron-optativo: #7f5539;
             --azul-terminal: #003049;
+            --gris-bloqueado: #d1d1d1;
             --texto-oscuro: #2c3e50;
         }
 
-        body {
-            font-family: 'Segoe UI', Arial, sans-serif;
-            background-color: #f8f9fa;
-            margin: 0;
-            padding: 20px;
-            color: var(--texto-oscuro);
-        }
+        body { font-family: 'Segoe UI', Arial, sans-serif; background-color: #f8f9fa; margin: 0; padding: 15px; color: var(--texto-oscuro); }
+        
+        header { text-align: center; margin-bottom: 15px; }
+        h1 { margin: 0 0 5px 0; font-weight: 800; font-size: 1.8rem; }
+        .subtitulo { font-size: 0.9rem; color: #555; margin-bottom: 15px; }
 
-        header { text-align: center; margin-bottom: 20px; }
-        h1 { margin-bottom: 10px; font-weight: 800; font-size: 2.2rem; color: #333; }
-        .subtitulo { font-size: 1rem; color: #555; margin-bottom: 20px; }
-
-        /* --- AVANCE DE CARRERA --- */
-        .avance-card {
-            background: white;
-            max-width: 450px;
-            margin: 0 auto 25px auto;
-            padding: 15px;
-            border-radius: 10px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-            text-align: center;
-        }
-        .avance-label { font-weight: 700; margin-bottom: 8px; display: block; font-size: 1rem; }
-        .progress-container { background-color: #eee; border-radius: 20px; height: 14px; overflow: hidden; }
+        /* --- AVANCE --- */
+        .avance-card { background: white; max-width: 350px; margin: 0 auto 15px auto; padding: 10px; border-radius: 8px; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: center; }
+        .avance-label { font-weight: 700; margin-bottom: 5px; display: block; font-size: 0.85rem; }
+        .progress-container { background-color: #eee; border-radius: 10px; height: 10px; overflow: hidden; }
         #progress-bar { height: 100%; width: 0%; background-color: var(--verde-aprobado); transition: width 0.8s ease; }
 
         /* --- LEYENDA --- */
-        .leyenda { display: flex; justify-content: center; gap: 20px; margin-bottom: 30px; flex-wrap: wrap; }
-        .leyenda-item { display: flex; align-items: center; gap: 8px; font-size: 0.85rem; font-weight: 600; color: #444; }
-        .circulo { width: 14px; height: 14px; border-radius: 50%; }
+        .leyenda { display: flex; justify-content: center; gap: 15px; margin-bottom: 20px; flex-wrap: wrap; }
+        .leyenda-item { display: flex; align-items: center; gap: 5px; font-size: 0.75rem; font-weight: 600; }
+        .circulo { width: 10px; height: 10px; border-radius: 50%; }
 
         /* --- CONTENEDOR HORIZONTAL --- */
-        .malla-wrapper-horizontal {
-            display: flex;
-            gap: 15px;
-            overflow-x: auto;
-            padding: 20px 10px 150px 10px;
-            align-items: flex-start;
+        .malla-wrapper-horizontal { 
+            display: flex; 
+            gap: 12px; 
+            overflow-x: auto; 
+            padding: 10px 5px 100px 5px; 
+            align-items: flex-start; 
         }
 
-        .año-seccion {
-            background: #f1f3f4;
-            border-radius: 8px;
-            min-width: 440px;
-            flex-shrink: 0;
-            border: 1px solid #ddd;
+        .año-seccion { 
+            background: #f1f3f4; 
+            border-radius: 6px; 
+            min-width: 300px; /* Reducido drásticamente */
+            flex-shrink: 0; 
+            border: 1px solid #ddd; 
         }
 
-        .año-titulo {
-            background: #2c3e50;
-            color: white;
-            text-align: center;
-            padding: 8px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            border-radius: 8px 8px 0 0;
+        .año-titulo { 
+            background: #2c3e50; 
+            color: white; 
+            text-align: center; 
+            padding: 5px; 
+            font-size: 0.85rem; 
+            border-radius: 6px 6px 0 0; 
+            text-transform: uppercase; 
         }
 
-        .semestres-wrapper { display: flex; padding: 10px; gap: 10px; background: white; }
-        .semestre { flex: 1; display: flex; flex-direction: column; gap: 8px; }
-        
-        .semestre-header {
-            background: #546e7a;
-            color: white;
-            text-align: center;
-            padding: 5px;
-            font-size: 0.9rem;
-            font-weight: 700;
-            border-radius: 2px;
-        }
+        .semestres-wrapper { display: flex; padding: 6px; gap: 6px; background: white; }
+        .semestre { flex: 1; display: flex; flex-direction: column; gap: 5px; }
+        .semestre-header { background: #546e7a; color: white; text-align: center; padding: 3px; font-size: 0.75rem; font-weight: 700; }
 
-        /* --- RAMOS COMPACTOS --- */
+        /* --- RAMOS ULTRA COMPACTOS --- */
         .ramo {
             position: relative;
-            padding: 8px 5px;
-            border-radius: 6px;
-            font-size: 0.72rem;
+            padding: 6px 4px;
+            border-radius: 4px;
+            font-size: 0.68rem; /* Letra ligeramente más pequeña */
             font-weight: 700;
             text-align: center;
-            min-height: 50px;
+            min-height: 42px; /* Altura reducida */
+            width: 135px;    /* Ancho fijo para forzar saltos de línea */
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            border-bottom: 3px solid rgba(0,0,0,0.15);
+            border-bottom: 2px solid rgba(0,0,0,0.15);
             transition: 0.2s;
-            line-height: 1.2;
-            user-select: none;
+            line-height: 1.1;
+            box-sizing: border-box;
+            word-wrap: break-word;
         }
 
-        .disponible { background-color: var(--celeste); color: var(--texto-oscuro); }
-        .ofg.disponible { background-color: var(--amarillo-ofg); color: #5a461a; }
-        .optativo.disponible { background-color: var(--marron-optativo); color: white; }
-        .terminal.disponible { background-color: var(--azul-terminal); color: white; }
-        .aprobado { background-color: var(--verde-aprobado) !important; color: white !important; text-decoration: line-through; border-color: transparent; }
+        .ramo.bloqueado { background-color: var(--gris-bloqueado) !important; color: #888 !important; cursor: not-allowed; border-bottom-color: #bbb; }
+        .ramo.malla { background-color: var(--celeste); }
+        .ramo.terminal { background-color: var(--azul-terminal); color: white; }
+        .ramo.ofg { background-color: var(--amarillo-ofg); }
+        .ramo.optativo { background-color: var(--marron-optativo); color: white; }
+        .ramo.aprobado { background-color: var(--verde-aprobado) !important; color: white !important; border-bottom-color: rgba(0,0,0,0.2); }
 
-        /* --- TOOLTIP ESTILO APUC --- */
+        .ramo.bloqueado::before { content: "🔒 "; font-size: 0.6rem; }
+
+        /* Tooltip */
         .ramo::after {
-            content: "Sigla: Sin información\A Créditos: Sin información\A Requisito: Sin información";
-            white-space: pre-wrap;
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(5px);
-            color: #fff;
-            padding: 12px;
-            border-radius: 8px;
-            font-size: 0.75rem;
-            font-weight: 400; /* Letras no negritas */
-            width: 190px;
-            z-index: 1000;
-            text-align: left;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.2s, margin-top 0.2s;
-            margin-top: 10px;
-            border: 1px solid rgba(255,255,255,0.1);
+            content: "Sigla: Sin información\A Créditos: Sin información\A Requisito: " attr(data-req-name);
+            white-space: pre-wrap; position: absolute; top: 100%; left: 50%; transform: translateX(-50%);
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(4px); color: #fff; padding: 10px;
+            border-radius: 6px; font-size: 0.7rem; font-weight: 400; width: 160px; z-index: 1000;
+            opacity: 0; transition: 0.2s; margin-top: 8px; pointer-events: none;
         }
+        .ramo:hover::after { opacity: 1; margin-top: 4px; }
+        .ramo:hover { transform: scale(1.02); z-index: 5; filter: brightness(1.05); }
 
-        .ramo:hover::after { opacity: 1; margin-top: 5px; }
-        .ramo:hover { filter: brightness(1.1); transform: scale(1.02); z-index: 10; }
-
-        /* Custom Scrollbar */
-        .malla-wrapper-horizontal::-webkit-scrollbar { height: 12px; }
+        /* Scrollbar */
+        .malla-wrapper-horizontal::-webkit-scrollbar { height: 8px; }
         .malla-wrapper-horizontal::-webkit-scrollbar-thumb { background: #2c3e50; border-radius: 10px; }
     </style>
 </head>
@@ -155,9 +119,10 @@
         <div class="progress-container"><div id="progress-bar"></div></div>
     </div>
     <div class="leyenda">
-        <div class="leyenda-item"><div class="circulo" style="background: var(--celeste);"></div><div class="circulo" style="background: var(--azul-terminal);"></div> Ramo de malla</div>
-        <div class="leyenda-item"><div class="circulo" style="background: var(--amarillo-ofg);"></div> Optativo de formación general</div>
-        <div class="leyenda-item"><div class="circulo" style="background: var(--marron-optativo);"></div> Optativo de Profundización</div>
+        <div class="leyenda-item"><div class="circulo" style="background: var(--celeste);"></div> Malla</div>
+        <div class="leyenda-item"><div class="circulo" style="background: var(--amarillo-ofg);"></div> OFG</div>
+        <div class="leyenda-item"><div class="circulo" style="background: var(--marron-optativo);"></div> Optativo</div>
+        <div class="leyenda-item"><div class="circulo" style="background: var(--verde-aprobado);"></div> Aprobado</div>
     </div>
 </header>
 
@@ -167,23 +132,19 @@
         <div class="semestres-wrapper">
             <div class="semestre">
                 <div class="semestre-header">I</div>
-                <div id="r1_1" class="ramo disponible" onclick="toggle('r1_1')">Paradigmas Sociológicos</div>
-                <div id="r1_2" class="ramo disponible" onclick="toggle('r1_2')">Razonamiento Cuantitativo</div>
-                <div id="r1_3" class="ramo disponible" onclick="toggle('r1_3')">Paradigmas Antropológicos</div>
-                <div id="r1_4" class="ramo disponible" onclick="toggle('r1_4')">Introducción a la Arqueología</div>
-                <div id="r1_5" class="ramo disponible" onclick="toggle('r1_5')">Antropología Biológica</div>
-                <div id="r1_e1" class="ramo disponible" onclick="toggle('r1_e1')">Examen Comunicación Escrita</div>
-                <div id="r1_e2" class="ramo disponible" onclick="toggle('r1_e2')">English Test ALTE 2</div>
-                <div id="r1_e3" class="ramo disponible" onclick="toggle('r1_e3')">Integridad Académica UC</div>
-                <div id="r1_e4" class="ramo disponible" onclick="toggle('r1_e4')">Docencia Ayudantes</div>
+                <div id="r1_1" class="ramo malla" onclick="toggle('r1_1')">Paradigmas Sociológicos</div>
+                <div id="r1_2" class="ramo malla" onclick="toggle('r1_2')">Razonamiento Cuantitativo</div>
+                <div id="r1_3" class="ramo malla" onclick="toggle('r1_3')">Paradigmas Antropológicos</div>
+                <div id="r1_4" class="ramo malla" onclick="toggle('r1_4')">Introducción Arqueología</div>
+                <div id="r1_5" class="ramo malla" onclick="toggle('r1_5')">Antropología Biológica</div>
             </div>
             <div class="semestre">
                 <div class="semestre-header">II</div>
-                <div id="r2_1" class="ramo disponible" onclick="toggle('r2_1')">Sociedad y Cultura Latam</div>
-                <div id="r2_2" class="ramo disponible" onclick="toggle('r2_2')">Teoría Arqueológica</div>
-                <div id="r2_3" class="ramo disponible" onclick="toggle('r2_3')">Prehistoria General</div>
-                <div id="r2_4" class="ramo disponible ofg" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
-                <div id="r2_5" class="ramo disponible ofg" onclick="toggle('r2_5')">OFG</div>
+                <div id="r2_1" class="ramo malla" onclick="toggle('r2_1')">Sociedad y Cultura Latam</div>
+                <div id="r2_2" class="ramo malla" data-req="r1_4" data-req-name="Introducción Arqueología" onclick="toggle('r2_2')">Teoría Arqueológica</div>
+                <div id="r2_3" class="ramo malla" onclick="toggle('r2_3')">Prehistoria General</div>
+                <div id="r2_4" class="ramo ofg" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
+                <div id="r2_5" class="ramo ofg" onclick="toggle('r2_5')">OFG</div>
             </div>
         </div>
     </div>
@@ -193,104 +154,61 @@
         <div class="semestres-wrapper">
             <div class="semestre">
                 <div class="semestre-header">III</div>
-                <div id="r3_1" class="ramo disponible" onclick="toggle('r3_1')">Antropología del Lenguaje</div>
-                <div id="r3_2" class="ramo disponible" onclick="toggle('r3_2')">Metodología Inv. Social</div>
-                <div id="r3_3" class="ramo disponible" onclick="toggle('r3_3')">Teoría Antropológica I</div>
-                <div id="r3_4" class="ramo disponible" onclick="toggle('r3_4')">Ética Social</div>
-                <div id="r3_5" class="ramo disponible ofg" onclick="toggle('r3_5')">OFG</div>
+                <div id="r3_1" class="ramo malla" onclick="toggle('r3_1')">Antropología del Lenguaje</div>
+                <div id="r3_2" class="ramo malla" onclick="toggle('r3_2')">Metodología Inv. Social</div>
+                <div id="r3_3" class="ramo malla" data-req="r1_3" data-req-name="Paradigmas Antro." onclick="toggle('r3_3')">Teoría Antropológica I</div>
+                <div id="r3_4" class="ramo malla" onclick="toggle('r3_4')">Ética Social</div>
+                <div id="r3_5" class="ramo ofg" onclick="toggle('r3_5')">OFG</div>
             </div>
             <div class="semestre">
                 <div class="semestre-header">IV</div>
-                <div id="r4_1" class="ramo disponible" onclick="toggle('r4_1')">Prehistoria de América</div>
-                <div id="r4_2" class="ramo disponible" onclick="toggle('r4_2')">Introducción Etnografía</div>
-                <div id="r4_3" class="ramo disponible" onclick="toggle('r4_3')">Teoría Antropológica II</div>
-                <div id="r4_4" class="ramo disponible" onclick="toggle('r4_4')">Inv. Cualitativa</div>
-                <div id="r4_5" class="ramo disponible ofg" onclick="toggle('r4_5')">OFG</div>
+                <div id="r4_1" class="ramo malla" onclick="toggle('r4_1')">Prehistoria de América</div>
+                <div id="r4_2" class="ramo malla" onclick="toggle('r4_2')">Introducción Etnografía</div>
+                <div id="r4_3" class="ramo malla" data-req="r3_3" data-req-name="Teoría Antro. I" onclick="toggle('r4_3')">Teoría Antropológica II</div>
+                <div id="r4_4" class="ramo malla" onclick="toggle('r4_4')">Inv. Cualitativa</div>
+                <div id="r4_5" class="ramo ofg" onclick="toggle('r4_5')">OFG</div>
             </div>
         </div>
     </div>
 
-    <div class="año-seccion">
-        <div class="año-titulo">Tercer Año</div>
-        <div class="semestres-wrapper">
-            <div class="semestre">
-                <div class="semestre-header">V</div>
-                <div id="r5_1" class="ramo disponible" onclick="toggle('r5_1')">Etnografía I</div>
-                <div id="r5_2" class="ramo disponible" onclick="toggle('r5_2')">Teoría Antropológica III</div>
-                <div id="r5_3" class="ramo disponible" onclick="toggle('r5_3')">Análisis Cualitativo</div>
-                <div id="r5_4" class="ramo disponible ofg" onclick="toggle('r5_4')">OFG</div>
-                <div id="r5_5" class="ramo disponible ofg" onclick="toggle('r5_5')">OFG</div>
-            </div>
-            <div class="semestre">
-                <div class="semestre-header">VI</div>
-                <div id="r6_1" class="ramo disponible" onclick="toggle('r6_1')">Etnografía II</div>
-                <div id="r6_2" class="ramo disponible" onclick="toggle('r6_2')">Antrop. Parentesco y Género</div>
-                <div id="r6_3" class="ramo disponible" onclick="toggle('r6_3')">Análisis Cuantitativo</div>
-                <div id="r6_4" class="ramo disponible" onclick="toggle('r6_4')">Antropología de Chile</div>
-                <div id="r6_5" class="ramo disponible ofg" onclick="toggle('r6_5')">OFG</div>
-            </div>
-        </div>
     </div>
-
-    <div class="año-seccion">
-        <div class="año-titulo">Cuarto Año</div>
-        <div class="semestres-wrapper">
-            <div class="semestre">
-                <div class="semestre-header">VII</div>
-                <div id="r7_1" class="ramo disponible" onclick="toggle('r7_1')">Antropología Urbana</div>
-                <div id="r7_2" class="ramo disponible" onclick="toggle('r7_2')">Antropología Política</div>
-                <div id="r7_3" class="ramo disponible optativo" onclick="toggle('r7_3')">Optativo Regional</div>
-                <div id="r7_4" class="ramo disponible optativo" onclick="toggle('r7_4')">Optativo Prof.</div>
-                <div id="r7_5" class="ramo disponible ofg" onclick="toggle('r7_5')">OFG</div>
-            </div>
-            <div class="semestre">
-                <div class="semestre-header">VIII</div>
-                <div id="r8_1" class="ramo disponible" onclick="toggle('r8_1')">Antropología Económica</div>
-                <div id="r8_2" class="ramo disponible" onclick="toggle('r8_2')">Antropología Religión</div>
-                <div id="r8_3" class="ramo disponible" onclick="toggle('r8_3')">Antropología Médica</div>
-                <div id="r8_4" class="ramo disponible optativo" onclick="toggle('r8_4')">Optativo Regional</div>
-                <div id="r8_5" class="ramo disponible optativo" onclick="toggle('r8_5')">Optativo Prof.</div>
-            </div>
-        </div>
-    </div>
-
-    <div class="año-seccion">
-        <div class="año-titulo">Quinto Año</div>
-        <div class="semestres-wrapper">
-            <div class="semestre">
-                <div class="semestre-header">IX</div>
-                <div id="r9_1" class="ramo disponible terminal" onclick="toggle('r9_1')">Formulación Proyectos</div>
-                <div id="r9_2" class="ramo disponible terminal" onclick="toggle('r9_2')">Mediación Intercultural</div>
-                <div id="r9_3" class="ramo disponible terminal" onclick="toggle('r9_3')">Políticas Públicas</div>
-                <div id="r9_4" class="ramo disponible optativo" onclick="toggle('r9_4')">Optativo Prof.</div>
-                <div id="r9_5" class="ramo disponible optativo" onclick="toggle('r9_5')">Optativo Prof.</div>
-            </div>
-            <div class="semestre">
-                <div class="semestre-header">X</div>
-                <div id="r10_1" class="ramo disponible terminal" onclick="toggle('r10_1')">Taller de Titulación</div>
-            </div>
-        </div>
-    </div>
-</div>
 
 <script>
     function toggle(id) {
-        document.getElementById(id).classList.toggle('aprobado');
+        const el = document.getElementById(id);
+        if (el.classList.contains('bloqueado')) return;
+        el.classList.toggle('aprobado');
         actualizar();
     }
+
     function actualizar() {
         const ramos = document.querySelectorAll('.ramo');
+        ramos.forEach(r => {
+            const reqId = r.getAttribute('data-req');
+            if (reqId) {
+                const reqEl = document.getElementById(reqId);
+                if (!reqEl.classList.contains('aprobado')) {
+                    r.classList.add('bloqueado');
+                    r.classList.remove('aprobado');
+                } else {
+                    r.classList.remove('bloqueado');
+                }
+            }
+        });
+
         let aprobados = 0;
         ramos.forEach(r => { if (r.classList.contains('aprobado')) aprobados++; });
         const porcentaje = Math.round((aprobados / ramos.length) * 100) || 0;
         document.getElementById('progress-bar').style.width = porcentaje + '%';
         document.getElementById('label-avance').innerText = `Avance de Carrera: ${porcentaje}%`;
+
         const save = {};
         ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
-        localStorage.setItem('malla_antropologia_final_v7', JSON.stringify(save));
+        localStorage.setItem('malla_antro_compact_v9', JSON.stringify(save));
     }
+
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antropologia_final_v7'));
+        const save = JSON.parse(localStorage.getItem('malla_antro_compact_v9'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
