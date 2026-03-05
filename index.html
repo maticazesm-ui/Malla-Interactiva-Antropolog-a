@@ -6,21 +6,18 @@
     <title>Malla Antropología UC</title>
     <style>
         :root {
-            /* NUEVO AZUL HIELO translúcido (0.85) */
             --celeste: rgba(202, 240, 248, 0.85);
-            /* Otros colores con transparencia para armonizar */
             --verde-aprobado: rgba(96, 108, 56, 0.9);
             --amarillo-ofg: rgba(233, 196, 106, 0.85);
             --marron-optativo: rgba(127, 85, 57, 0.85);
             --azul-terminal: rgba(0, 48, 73, 0.85);
             --gris-bloqueado: rgba(209, 209, 209, 0.8);
-            /* Un verde muy oscuro para el texto */
             --texto-oscuro: #283618; 
         }
 
         body { 
             font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-            background-color: #fefae0; /* Color crema cálido */
+            background-color: #fefae0; 
             margin: 0; 
             padding: 15px; 
             color: var(--texto-oscuro); 
@@ -30,7 +27,6 @@
         h1 { margin: 0 0 5px 0; font-weight: 800; font-size: 2.1rem; }
         .subtitulo { font-size: 1rem; color: #606c38; margin-bottom: 15px; font-weight: 600; }
 
-        /* --- AVANCE --- */
         .avance-card { 
             background: rgba(255, 255, 255, 0.5); 
             max-width: 400px; 
@@ -45,17 +41,14 @@
         .progress-container { background-color: rgba(0,0,0,0.05); border-radius: 20px; height: 12px; overflow: hidden; }
         #progress-bar { height: 100%; width: 0%; background-color: #606c38; transition: width 0.8s ease; }
 
-        /* --- LEYENDA --- */
         .leyenda { display: flex; justify-content: center; gap: 15px; margin-bottom: 25px; flex-wrap: wrap; }
         .leyenda-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; }
         .leyenda-colors { display: flex; gap: 2px; }
         .circulo { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
 
-        /* --- CONTENEDOR HORIZONTAL --- */
         .malla-container { overflow-x: auto; padding-bottom: 30px; }
         .malla-wrapper-horizontal { display: flex; gap: 15px; padding: 10px; width: max-content; }
 
-        /* --- SECCIONES DE AÑO --- */
         .año-seccion { 
             background: rgba(255, 255, 255, 0.4); 
             border-radius: 8px; 
@@ -74,12 +67,7 @@
         }
 
         .semestres-wrapper { display: flex; padding: 10px; gap: 10px; }
-        .semestre { 
-            width: 145px; /* Ancho perfecto para visibilidad panorámica */
-            display: flex; 
-            flex-direction: column; 
-            gap: 8px; 
-        }
+        .semestre { width: 145px; display: flex; flex-direction: column; gap: 8px; }
         
         .semestre-header { 
             background: rgba(0,0,0,0.05); 
@@ -93,7 +81,6 @@
             margin-bottom: 4px; 
         }
 
-        /* --- RAMOS --- */
         .ramo {
             position: relative;
             padding: 10px 6px;
@@ -121,7 +108,6 @@
             border-bottom-color: rgba(0,0,0,0.15); 
         }
 
-        /* Tooltip */
         .ramo::after {
             content: "Sigla: --\A Créditos: --\A Requisito: " attr(data-req-name);
             white-space: pre-wrap; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%);
@@ -132,7 +118,6 @@
         .ramo:hover::after { opacity: 1; }
         .ramo:hover { transform: translateY(-2px); filter: brightness(1.03); }
 
-        /* Scrollbar */
         .malla-container::-webkit-scrollbar { height: 10px; }
         .malla-container::-webkit-scrollbar-thumb { background: #bc6c25; border-radius: 10px; border: 2px solid #fefae0; }
     </style>
@@ -172,17 +157,17 @@
                     <div id="r1_1" class="ramo" onclick="toggle('r1_1')">Paradigmas Sociológicos</div>
                     <div id="r1_2" class="ramo" onclick="toggle('r1_2')">Razonamiento Cuantitativo</div>
                     <div id="r1_3" class="ramo" onclick="toggle('r1_3')">Paradigmas Antropológicos</div>
-                    <div id="r1_4" class="ramo" onclick="toggle('r1_4')">Introducción a Arqueología</div>
+                    <div id="r1_4" class="ramo" onclick="toggle('r1_4')">Introducción a la Arqueología</div>
                     <div id="r1_5" class="ramo" onclick="toggle('r1_5')">Antropología Biológica</div>
-                    <div id="r1_e1" class="ramo" onclick="toggle('r1_e1')">Examen Comunicación Escrita</div>
+                    <div id="r1_e1" class="ramo" onclick="toggle('r1_e1')">Examen de Comunicación Escrita</div>
                     <div id="r1_e2" class="ramo" onclick="toggle('r1_e2')">English Test ALTE 2</div>
-                    <div id="r1_e3" class="ramo" onclick="toggle('r1_e3')">Integridad Académica UC</div>
-                    <div id="r1_e4" class="ramo" onclick="toggle('r1_e4')">Formación Docencia</div>
+                    <div id="r1_e3" class="ramo" onclick="toggle('r1_e3')">Integridad Académica en la UC</div>
+                    <div id="r1_e4" class="ramo" onclick="toggle('r1_e4')">Formación en Docencia para Ayudantes UC</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">II</div>
-                    <div id="r2_1" class="ramo" onclick="toggle('r2_1')">Sociedad Cultura Latinoamericana</div>
-                    <div id="r2_2" class="ramo" data-req-name="Introducción Arqueología" onclick="toggle('r2_2')">Teoría Arqueológica</div>
+                    <div id="r2_1" class="ramo" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
+                    <div id="r2_2" class="ramo" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
                     <div id="r2_3" class="ramo" onclick="toggle('r2_3')">Prehistoria General</div>
                     <div id="r2_4" class="ramo ofg" onclick="toggle('r2_4')">Filosofía: ¿Para qué?</div>
                     <div id="r2_5" class="ramo ofg" onclick="toggle('r2_5')">OFG</div>
@@ -196,17 +181,17 @@
                 <div class="semestre">
                     <div class="semestre-header">III</div>
                     <div id="r3_1" class="ramo" onclick="toggle('r3_1')">Antropología del Lenguaje</div>
-                    <div id="r3_2" class="ramo" onclick="toggle('r3_2')">Metodología Inv. Social</div>
-                    <div id="r3_3" class="ramo" data-req-name="Paradigmas Antro." onclick="toggle('r3_3')">Teoría Antropológica I</div>
+                    <div id="r3_2" class="ramo" onclick="toggle('r3_2')">Metodología de la Investigación Social</div>
+                    <div id="r3_3" class="ramo" onclick="toggle('r3_3')">Teoría Antropológica I</div>
                     <div id="r3_4" class="ramo" onclick="toggle('r3_4')">Ética Social</div>
                     <div id="r3_5" class="ramo ofg" onclick="toggle('r3_5')">OFG</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">IV</div>
                     <div id="r4_1" class="ramo" onclick="toggle('r4_1')">Prehistoria de América</div>
-                    <div id="r4_2" class="ramo" onclick="toggle('r4_2')">Introducción Etnografía</div>
-                    <div id="r4_3" class="ramo" data-req-name="Teoría Antro. I" onclick="toggle('r4_3')">Teoría Antropológica II</div>
-                    <div id="r4_4" class="ramo" onclick="toggle('r4_4')">Investigación Cualitativa</div>
+                    <div id="r4_2" class="ramo" onclick="toggle('r4_2')">Introducción a la Etnografía</div>
+                    <div id="r4_3" class="ramo" onclick="toggle('r4_3')">Teoría Antropológica II</div>
+                    <div id="r4_4" class="ramo" onclick="toggle('r4_4')">Introducción a la Investigación Cualitativa</div>
                     <div id="r4_5" class="ramo ofg" onclick="toggle('r4_5')">OFG</div>
                 </div>
             </div>
@@ -219,15 +204,15 @@
                     <div class="semestre-header">V</div>
                     <div id="r5_1" class="ramo" onclick="toggle('r5_1')">Etnografía I</div>
                     <div id="r5_2" class="ramo" onclick="toggle('r5_2')">Teoría Antropológica III</div>
-                    <div id="r5_3" class="ramo" onclick="toggle('r5_3')">Análisis Cualitativo</div>
+                    <div id="r5_3" class="ramo" onclick="toggle('r5_3')">Análisis de Datos Cualitativos</div>
                     <div id="r5_4" class="ramo ofg" onclick="toggle('r5_4')">OFG</div>
                     <div id="r5_5" class="ramo ofg" onclick="toggle('r5_5')">OFG</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">VI</div>
                     <div id="r6_1" class="ramo" onclick="toggle('r6_1')">Etnografía II</div>
-                    <div id="r6_2" class="ramo" onclick="toggle('r6_2')">Antrop. Parentesco y Género</div>
-                    <div id="r6_3" class="ramo" onclick="toggle('r6_3')">Análisis Cuantitativo</div>
+                    <div id="r6_2" class="ramo" onclick="toggle('r6_2')">Antropología del Parentesco y el Género</div>
+                    <div id="r6_3" class="ramo" onclick="toggle('r6_3')">Análisis de Datos Cuantitativos</div>
                     <div id="r6_4" class="ramo" onclick="toggle('r6_4')">Antropología de Chile</div>
                     <div id="r6_5" class="ramo ofg" onclick="toggle('r6_5')">OFG</div>
                 </div>
@@ -241,17 +226,17 @@
                     <div class="semestre-header">VII</div>
                     <div id="r7_1" class="ramo" onclick="toggle('r7_1')">Antropología Urbana</div>
                     <div id="r7_2" class="ramo" onclick="toggle('r7_2')">Antropología Política</div>
-                    <div id="r7_3" class="ramo optativo" onclick="toggle('r7_3')">Optativo Regional</div>
-                    <div id="r7_4" class="ramo optativo" onclick="toggle('r7_4')">Optativo Profundización</div>
+                    <div id="r7_3" class="ramo optativo" onclick="toggle('r7_3')">Optativo de Profundización Regional</div>
+                    <div id="r7_4" class="ramo optativo" onclick="toggle('r7_4')">Optativo de Profundización</div>
                     <div id="r7_5" class="ramo ofg" onclick="toggle('r7_5')">OFG</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">VIII</div>
                     <div id="r8_1" class="ramo" onclick="toggle('r8_1')">Antropología Económica</div>
-                    <div id="r8_2" class="ramo" onclick="toggle('r8_2')">Antropología Religión</div>
+                    <div id="r8_2" class="ramo" onclick="toggle('r8_2')">Antropología de la Religión</div>
                     <div id="r8_3" class="ramo" onclick="toggle('r8_3')">Antropología Médica</div>
-                    <div id="r8_4" class="ramo optativo" onclick="toggle('r8_4')">Optativo Regional</div>
-                    <div id="r8_5" class="ramo optativo" onclick="toggle('r8_5')">Optativo Profundización</div>
+                    <div id="r8_4" class="ramo optativo" onclick="toggle('r8_4')">Optativo de Profundización Regional</div>
+                    <div id="r8_5" class="ramo optativo" onclick="toggle('r8_5')">Optativo de Profundización</div>
                 </div>
             </div>
         </div>
@@ -261,11 +246,11 @@
             <div class="semestres-wrapper">
                 <div class="semestre">
                     <div class="semestre-header">IX</div>
-                    <div id="r9_1" class="ramo terminal" onclick="toggle('r9_1')">Formulación Proyectos</div>
-                    <div id="r9_2" class="ramo terminal" onclick="toggle('r9_2')">Mediación Intercultural</div>
+                    <div id="r9_1" class="ramo terminal" onclick="toggle('r9_1')">Formulación y Evaluación de Proyectos</div>
+                    <div id="r9_2" class="ramo terminal" onclick="toggle('r9_2')">Mediación e Interculturalidad</div>
                     <div id="r9_3" class="ramo terminal" onclick="toggle('r9_3')">Políticas Públicas</div>
-                    <div id="r9_4" class="ramo optativo" onclick="toggle('r9_4')">Optativo Profundización</div>
-                    <div id="r9_5" class="ramo optativo" onclick="toggle('r9_5')">Optativo Profundización</div>
+                    <div id="r9_4" class="ramo optativo" onclick="toggle('r9_4')">Optativo de Profundización</div>
+                    <div id="r9_5" class="ramo optativo" onclick="toggle('r9_5')">Optativo de Profundización</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">X</div>
@@ -294,11 +279,11 @@
 
         const save = {};
         ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
-        localStorage.setItem('malla_antro_final_v13', JSON.stringify(save));
+        localStorage.setItem('malla_antro_final_v14', JSON.stringify(save));
     }
 
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antro_final_v13'));
+        const save = JSON.parse(localStorage.getItem('malla_antro_final_v14'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
