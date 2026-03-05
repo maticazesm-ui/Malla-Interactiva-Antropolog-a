@@ -25,12 +25,12 @@
         .progress-container { background-color: rgba(0,0,0,0.05); border-radius: 20px; height: 12px; overflow: hidden; }
         #progress-bar { height: 100%; width: 0%; background-color: #606c38; transition: width 0.8s ease; }
 
-        /* LEYENDA */
+        /* LEYENDA ACTUALIZADA */
         .leyenda { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 25px; }
         .leyenda-items { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .leyenda-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; }
         .circulo { width: 12px; height: 12px; border-radius: 50%; border: 1px solid rgba(0,0,0,0.1); }
-        .nota-edicion { font-size: 0.8rem; font-weight: 700; color: #bc6c25; margin-top: 5px; }
+        .nota-edicion { font-size: 0.8rem; font-weight: 700; color: #bc6c25; margin-top: 5px; text-align: center; max-width: 500px; }
 
         .malla-container { overflow-x: auto; padding-bottom: 30px; }
         .malla-wrapper-horizontal { display: flex; gap: 15px; padding: 10px; width: max-content; }
@@ -89,9 +89,9 @@
                 Ramo de malla
             </div>
             <div class="leyenda-item"><div class="circulo" style="background: var(--amarillo-ofg);"></div> OFG</div>
-            <div class="leyenda-item"><div class="circulo" style="background: var(--marron-optativo);"></div> OPR (Profundización)</div>
+            <div class="leyenda-item"><div class="circulo" style="background: var(--marron-optativo);"></div> OPR</div>
         </div>
-        <div class="nota-edicion">Ojo: para editar los OFGs y OPRs haz clic derecho.</div>
+        <div class="nota-edicion">Ojo: para editar los OFGs y OPRs haz clic derecho sobre ellos y rellénalos como tú quieras.</div>
     </div>
 </header>
 
@@ -240,7 +240,7 @@
     function actualizar() {
         const ramos = document.querySelectorAll('.ramo');
         
-        // Lógica de requisitos (preparada)
+        // Lógica de requisitos
         ramos.forEach(r => {
             const reqId = r.getAttribute('data-req');
             if (reqId) {
