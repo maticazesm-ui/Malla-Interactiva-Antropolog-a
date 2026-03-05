@@ -96,30 +96,36 @@
             border: 2px solid rgba(0,0,0,0.05);
             transition: 0.2s;
             line-height: 1.2;
+            user-select: none;
         }
 
-        /* ESTADOS Y COLORES ESPECIALES */
         .disponible { background-color: var(--celeste); color: var(--texto-oscuro); }
         .ofg.disponible { background-color: var(--amarillo-ofg); color: #5a461a; }
         .optativo.disponible { background-color: var(--marron-optativo); color: white; }
         .terminal.disponible { background-color: var(--azul-terminal); color: white; }
         
-        .aprobado { background-color: var(--verde-aprobado) !important; color: white !important; text-decoration: line-through; border-color: transparent; }
+        .aprobado { 
+            background-color: var(--verde-aprobado) !important; 
+            color: white !important; 
+            text-decoration: line-through; 
+            border-color: transparent; 
+        }
 
         .leyenda {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 20px;
+            gap: 25px;
             margin: 40px auto;
             padding: 20px;
             background: #f1f1f1;
             border-radius: 10px;
-            max-width: 1000px;
+            max-width: 1100px;
         }
 
-        .leyenda-item { display: flex; align-items: center; gap: 8px; font-size: 0.8rem; }
-        .cuadrito { width: 18px; height: 18px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); }
+        .leyenda-item { display: flex; align-items: center; gap: 10px; font-size: 0.85rem; font-weight: 500; }
+        .leyenda-colors { display: flex; align-items: center; gap: 4px; }
+        .cuadrito { width: 20px; height: 20px; border-radius: 4px; border: 1px solid rgba(0,0,0,0.1); }
 
         .ramo:hover { transform: translateY(-3px); box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
     </style>
@@ -224,11 +230,26 @@
     </div>
 
     <div class="leyenda">
-        <div class="leyenda-item"><div class="cuadrito" style="background: var(--celeste);"></div> Ramo Obligatorio</div>
-        <div class="leyenda-item"><div class="cuadrito" style="background: var(--amarillo-ofg);"></div> Electivo Formación General</div>
-        <div class="leyenda-item"><div class="cuadrito" style="background: var(--marron-optativo);"></div> Optativo de Profundización</div>
-        <div class="leyenda-item"><div class="cuadrito" style="background: var(--azul-terminal);"></div> Ramos 9° y 10° Semestre</div>
-        <div class="leyenda-item"><div class="cuadrito" style="background: var(--verde-aprobado);"></div> Ramo Aprobado</div>
+        <div class="leyenda-item">
+            <div class="leyenda-colors">
+                <div class="cuadrito" style="background: var(--celeste);"></div>
+                <span>y</span>
+                <div class="cuadrito" style="background: var(--azul-terminal);"></div>
+            </div>
+            Ramo de malla
+        </div>
+        <div class="leyenda-item">
+            <div class="cuadrito" style="background: var(--amarillo-ofg);"></div>
+            Electivo Formación General
+        </div>
+        <div class="leyenda-item">
+            <div class="cuadrito" style="background: var(--marron-optativo);"></div>
+            Optativo de Profundización
+        </div>
+        <div class="leyenda-item">
+            <div class="cuadrito" style="background: var(--verde-aprobado);"></div>
+            Ramo Aprobado
+        </div>
     </div>
 
     <script>
@@ -253,11 +274,11 @@
 
             const save = {};
             ramos.forEach(r => save[r.id] = r.classList.contains('aprobado'));
-            localStorage.setItem('malla_uc_final', JSON.stringify(save));
+            localStorage.setItem('malla_uc_final_v3', JSON.stringify(save));
         }
 
         function cargar() {
-            const save = JSON.parse(localStorage.getItem('malla_uc_final'));
+            const save = JSON.parse(localStorage.getItem('malla_uc_final_v3'));
             if (save) {
                 Object.keys(save).forEach(id => {
                     const el = document.getElementById(id);
