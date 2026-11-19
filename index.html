@@ -25,7 +25,7 @@
         .progress-container { background-color: rgba(0,0,0,0.05); border-radius: 20px; height: 12px; overflow: hidden; }
         #progress-bar { height: 100%; width: 0%; background-color: #606c38; transition: width 0.8s ease; }
 
-        /* LEYENDA ACTUALIZADA */
+        /* LEYENDA */
         .leyenda { display: flex; flex-direction: column; align-items: center; gap: 8px; margin-bottom: 25px; }
         .leyenda-items { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
         .leyenda-item { display: flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 600; }
@@ -59,8 +59,11 @@
             content: "Sigla: " attr(data-sigla) "\A Créditos: " attr(data-creditos) "\A Requisito: " attr(data-req-name);
             white-space: pre-wrap; position: absolute; bottom: 110%; left: 50%; transform: translateX(-50%);
             background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(6px); color: #fff; padding: 10px;
-            border-radius: 6px; font-size: 0.72rem; font-weight: 400; width: 190px; z-index: 1000;
+            border-radius: 6px; font-size: 0.72rem; font-weight: 400; width: 205px; z-index: 1000;
             opacity: 0; transition: 0.2s; pointer-events: none; border: 1px solid rgba(255,255,255,0.1); text-align: left;
+        }
+        .ramo[data-equiv]::after {
+            content: "Sigla: " attr(data-sigla) "\A Créditos: " attr(data-creditos) "\A Requisitos: " attr(data-req-name) "\A Equivalencias: " attr(data-equiv);
         }
         .ramo:hover::after { opacity: 1; }
         .ramo:hover:not(.bloqueado) { transform: translateY(-2px); filter: brightness(1.03); }
@@ -98,6 +101,7 @@
 <div class="malla-container">
     <div class="malla-wrapper-horizontal">
         
+        <!-- PRIMER AÑO -->
         <div class="año-seccion">
             <div class="año-titulo">Primer Año</div>
             <div class="semestres-wrapper">
@@ -109,21 +113,22 @@
                     <div id="r1_4" class="ramo" data-sigla="ANT120" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_4')">Introducción a la Arqueología</div>
                     <div id="r1_5" class="ramo" data-sigla="ANT110" data-creditos="10" data-req-name="No tiene" onclick="toggle('r1_5')">Introducción a la Antropología Biológica</div>
                     <div id="r1_e1" class="ramo" data-sigla="VRA100C" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e1')">Examen de Comunicación Escrita</div>
-                    <div id="r1_e2" class="ramo" data-sigla="VRA200" data-creditos="0" data-req-name="RII4000 o equiv." onclick="toggle('r1_e2')">English Test ALTE 2</div>
+                    <div id="r1_e2" class="ramo" data-sigla="VRA200" data-creditos="0" data-req-name="RII4000 o RII4001 o RII4010 o EUC4000" data-equiv="VRA2010" onclick="toggle('r1_e2')">English Test ALTE 2</div>
                     <div id="r1_e3" class="ramo" data-sigla="VRA4000" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e3')">Integridad Académica en la UC</div>
-                    <div id="r1_e4" class="ramo" data-sigla="VRA1323" data-creditos="0" data-req-name="No tiene" onclick="toggle('r1_e4')">Formación en Docencia para Ayudantes UC</div>
+                    <div id="r1_e4" class="ramo" data-sigla="VRA1323" data-creditos="0" data-req-name="No tiene (No suma al avance)" data-no-avance="true" onclick="toggle('r1_e4')">Formación en Docencia para Ayudantes UC</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">II</div>
                     <div id="r2_1" class="ramo" data-sigla="SOL214" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_1')">Sociedad y Cultura Latinoamericana</div>
                     <div id="r2_2" class="ramo" data-sigla="ANT1610" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_2')">Teoría Arqueológica y Cultura Material Moderna</div>
                     <div id="r2_3" class="ramo" data-sigla="ANT1600" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_3')">Prehistoria General</div>
-                    <div id="r2_4" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_4')" oncontextmenu="editEditable(event, 'r2_4')">Filosofía: ¿Para qué?</div>
-                    <div id="r2_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r2_5')" oncontextmenu="editEditable(event, 'r2_5')">OFG</div>
+                    <div id="r2_4" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_4')" oncontextmenu="editEditable(event, 'r2_4')">Filosofía: ¿Para Qué?</div>
+                    <div id="r2_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r2_5')" oncontextmenu="editEditable(event, 'r2_5')">Optativo de Formación General</div>
                 </div>
             </div>
         </div>
 
+        <!-- SEGUNDO AÑO -->
         <div class="año-seccion">
             <div class="año-titulo">Segundo Año</div>
             <div class="semestres-wrapper">
@@ -131,79 +136,82 @@
                     <div class="semestre-header">III</div>
                     <div id="r3_1" class="ramo" data-sigla="ANT135" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_1')">Antropología del Lenguaje</div>
                     <div id="r3_2" class="ramo" data-sigla="SOL126S" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_2')">Metodología de la Investigación Social</div>
-                    <div id="r3_3" class="ramo" data-sigla="ANT140" data-req="r1_3" data-creditos="10" data-req-name="Paradigmas Antropológicos" onclick="toggle('r3_3')">Teoría Antropológica I</div>
+                    <div id="r3_3" class="ramo" data-sigla="ANT140" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_3')">Teoría Antropológica I</div>
                     <div id="r3_4" class="ramo" data-sigla="ANT107" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_4')">Ética Social</div>
-                    <div id="r3_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r3_5')" oncontextmenu="editEditable(event, 'r3_5')">OFG</div>
+                    <div id="r3_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r3_5')" oncontextmenu="editEditable(event, 'r3_5')">Electivo Formación Teológica</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">IV</div>
                     <div id="r4_1" class="ramo" data-sigla="ANT302Q" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_1')">Prehistoria de América</div>
                     <div id="r4_2" class="ramo" data-sigla="ANT170" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_2')">Introducción a la Etnografía</div>
-                    <div id="r4_3" class="ramo" data-sigla="ANT150" data-req="r1_3" data-creditos="10" data-req-name="Paradigmas Antropológicos" onclick="toggle('r4_3')">Teoría Antropológica II</div>
-                    <div id="r4_4" class="ramo" data-sigla="ANT133" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_4')">Introducción a la Investigación Cualitativa</div>
-                    <div id="r4_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="-" onclick="toggle('r4_5')" oncontextmenu="editEditable(event, 'r4_5')">OFG</div>
+                    <div id="r4_3" class="ramo" data-sigla="ANT150" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_3')">Teoría Antropológica II</div>
+                    <div id="r4_4" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_4')" oncontextmenu="editEditable(event, 'r4_4')">Optativo de Formación General</div>
+                    <div id="r4_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r4_5')" oncontextmenu="editEditable(event, 'r4_5')">Optativo de Formación General</div>
                 </div>
             </div>
         </div>
 
+        <!-- TERCER AÑO -->
         <div class="año-seccion">
             <div class="año-titulo">Tercer Año</div>
             <div class="semestres-wrapper">
                 <div class="semestre">
                     <div class="semestre-header">V</div>
-                    <div id="r5_1" class="ramo" data-sigla="-" data-creditos="10" onclick="toggle('r5_1')">Etnografía I</div>
-                    <div id="r5_2" class="ramo" data-sigla="-" data-creditos="10" onclick="toggle('r5_2')">Teoría Antropológica III</div>
-                    <div id="r5_3" class="ramo" data-sigla="-" data-creditos="10" onclick="toggle('r5_3')">Análisis de Datos Cualitativos</div>
-                    <div id="r5_4" class="ramo ofg" onclick="toggle('r5_4')" oncontextmenu="editEditable(event, 'r5_4')">OFG</div>
-                    <div id="r5_5" class="ramo ofg" onclick="toggle('r5_5')" oncontextmenu="editEditable(event, 'r5_5')">OFG</div>
+                    <div id="r5_1" class="ramo" data-sigla="ANT201" data-creditos="10" data-req="r1_3,r3_3,r4_3" data-req-name="Paradigmas Antropológicos, Teoría Antropológica I y II" onclick="toggle('r5_1')">Teoría Antropológica III</div>
+                    <div id="r5_2" class="ramo" data-sigla="ANT210" data-creditos="10" data-req="r3_2,r4_2" data-req-name="Metodología de la Inv. Social e Intro. a la Etnografía" onclick="toggle('r5_2')">Metodologías Etnográficas I</div>
+                    <div id="r5_3" class="ramo" data-sigla="ANT220" data-creditos="10" data-req="r1_3,r2_1" data-req-name="Paradigmas Antropológicos y Sociedad y Cultura Latinoamericana" onclick="toggle('r5_3')">Antropología de América Latina</div>
+                    <div id="r5_4" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r5_4')" oncontextmenu="editEditable(event, 'r5_4')">Optativo de Formación General</div>
+                    <div id="r5_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r5_5')" oncontextmenu="editEditable(event, 'r5_5')">Optativo de Formación General</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">VI</div>
-                    <div id="r6_1" class="ramo" onclick="toggle('r6_1')">Etnografía II</div>
-                    <div id="r6_2" class="ramo" onclick="toggle('r6_2')">Antropología del Parentesco y el Género</div>
-                    <div id="r6_3" class="ramo" onclick="toggle('r6_3')">Análisis de Datos Cuantitativos</div>
-                    <div id="r6_4" class="ramo" onclick="toggle('r6_4')">Antropología de Chile</div>
-                    <div id="r6_5" class="ramo ofg" onclick="toggle('r6_5')" oncontextmenu="editEditable(event, 'r6_5')">OFG</div>
+                    <div id="r6_1" class="ramo" data-sigla="ANT202" data-creditos="10" data-req="r5_1" data-req-name="Teoría Antropológica III" onclick="toggle('r6_1')">Teoría Antropológica IV</div>
+                    <div id="r6_2" class="ramo" data-sigla="ANT211" data-creditos="10" data-req="r5_2" data-req-name="Metodologías Etnográficas I" onclick="toggle('r6_2')">Metodologías Etnográficas II</div>
+                    <div id="r6_3" class="ramo" data-sigla="ANT221" data-creditos="10" data-req="r5_3" data-req-name="Antropología de América Latina" onclick="toggle('r6_3')">Antropología de Chile I</div>
+                    <div id="r6_4" class="ramo" data-sigla="ANT230" data-creditos="10" data-req="r3_1,r4_3" data-req-name="Antropología del Lenguaje y Teoría Antropológica II" onclick="toggle('r6_4')">Antropología Simbólica y Cognitiva</div>
+                    <div id="r6_5" class="ramo ofg" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r6_5')" oncontextmenu="editEditable(event, 'r6_5')">Optativo de Formación General</div>
                 </div>
             </div>
         </div>
 
+        <!-- CUARTO AÑO -->
         <div class="año-seccion">
             <div class="año-titulo">Cuarto Año</div>
             <div class="semestres-wrapper">
                 <div class="semestre">
                     <div class="semestre-header">VII</div>
-                    <div id="r7_1" class="ramo" onclick="toggle('r7_1')">Antropología Urbana</div>
-                    <div id="r7_2" class="ramo" onclick="toggle('r7_2')">Antropología Política</div>
-                    <div id="r7_3" class="ramo optativo" data-sigla="-" data-creditos="10" onclick="toggle('r7_3')" oncontextmenu="editEditable(event, 'r7_3')">OPR Regional</div>
-                    <div id="r7_4" class="ramo optativo" data-sigla="-" data-creditos="10" onclick="toggle('r7_4')" oncontextmenu="editEditable(event, 'r7_4')">OPR</div>
-                    <div id="r7_5" class="ramo ofg" onclick="toggle('r7_5')" oncontextmenu="editEditable(event, 'r7_5')">OFG</div>
+                    <div id="r7_1" class="ramo" data-sigla="ANT240" data-creditos="10" data-req="r4_3" data-req-name="Teoría Antropológica II" onclick="toggle('r7_1')">Antropología Política y Jurídica</div>
+                    <div id="r7_2" class="ramo" data-sigla="ANT212" data-creditos="10" data-req="r6_2" data-req-name="Metodologías Etnográficas II" onclick="toggle('r7_2')">Talleres Etnográficos I</div>
+                    <div id="r7_3" class="ramo" data-sigla="ANT222" data-creditos="10" data-req="r6_3" data-req-name="Antropología de Chile I" onclick="toggle('r7_3')">Antropología de Chile II</div>
+                    <div id="r7_4" class="ramo" data-sigla="ANT250" data-creditos="10" data-req="r4_3" data-req-name="Teoría Antropológica II" onclick="toggle('r7_4')">Antropología Económica y Ecológica</div>
+                    <div id="r7_5" class="ramo optativo" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r7_5')" oncontextmenu="editEditable(event, 'r7_5')">OPR</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">VIII</div>
-                    <div id="r8_1" class="ramo" onclick="toggle('r8_1')">Antropología Económica</div>
-                    <div id="r8_2" class="ramo" onclick="toggle('r8_2')">Antropología de la Religión</div>
-                    <div id="r8_3" class="ramo" onclick="toggle('r8_3')">Antropología Médica</div>
-                    <div id="r8_4" class="ramo optativo" onclick="toggle('r8_4')" oncontextmenu="editEditable(event, 'r8_4')">OPR Regional</div>
-                    <div id="r8_5" class="ramo optativo" onclick="toggle('r8_5')" oncontextmenu="editEditable(event, 'r8_5')">OPR</div>
+                    <div id="r8_1" class="ramo" data-sigla="ANT260" data-creditos="10" data-req="r1_5,r4_3" data-req-name="Intro. Antropología Biológica y Teoría Antropológica II" onclick="toggle('r8_1')">Antropología Médica</div>
+                    <div id="r8_2" class="ramo" data-sigla="ANT213" data-creditos="10" data-req="r7_2" data-req-name="Talleres Etnográficos I" onclick="toggle('r8_2')">Talleres Etnográficos II</div>
+                    <div id="r8_3" class="ramo" data-sigla="ANT270" data-creditos="10" data-req="r6_1" data-req-name="Teoría Antropológica IV" onclick="toggle('r8_3')">Debates Contemporáneos</div>
+                    <div id="r8_4" class="ramo optativo" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r8_4')" oncontextmenu="editEditable(event, 'r8_4')">OPR</div>
+                    <div id="r8_5" class="ramo optativo" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r8_5')" oncontextmenu="editEditable(event, 'r8_5')">OPR</div>
                 </div>
             </div>
         </div>
 
+        <!-- QUINTO AÑO -->
         <div class="año-seccion">
             <div class="año-titulo">Quinto Año</div>
             <div class="semestres-wrapper">
                 <div class="semestre">
                     <div class="semestre-header">IX</div>
-                    <div id="r9_1" class="ramo terminal" onclick="toggle('r9_1')">Formulación y Evaluación de Proyectos</div>
-                    <div id="r9_2" class="ramo terminal" onclick="toggle('r9_2')">Mediación e Interculturalidad</div>
-                    <div id="r9_3" class="ramo terminal" onclick="toggle('r9_3')">Políticas Públicas</div>
-                    <div id="r9_4" class="ramo optativo" onclick="toggle('r9_4')" oncontextmenu="editEditable(event, 'r9_4')">OPR</div>
-                    <div id="r9_5" class="ramo optativo" onclick="toggle('r9_5')" oncontextmenu="editEditable(event, 'r9_5')">OPR</div>
+                    <div id="r9_1" class="ramo terminal" data-sigla="ANT301" data-creditos="10" data-req="r8_2,r8_3" data-req-name="Talleres Etnográficos II y Debates Contemporáneos" onclick="toggle('r9_1')">Seminario de Título I</div>
+                    <div id="r9_2" class="ramo terminal" data-sigla="ANT310" data-creditos="10" data-req="r8_2" data-req-name="Talleres Etnográficos II" onclick="toggle('r9_2')">Antropología Aplicada y Políticas Públicas</div>
+                    <div id="r9_3" class="ramo optativo" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r9_3')" oncontextmenu="editEditable(event, 'r9_3')">OPR</div>
+                    <div id="r9_4" class="ramo optativo" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r9_4')" oncontextmenu="editEditable(event, 'r9_4')">OPR</div>
+                    <div id="r9_5" class="ramo optativo" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r9_5')" oncontextmenu="editEditable(event, 'r9_5')">OPR</div>
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">X</div>
-                    <div id="r10_1" class="ramo terminal" onclick="toggle('r10_1')">Taller de Titulación</div>
+                    <div id="r10_1" class="ramo terminal" data-sigla="ANT302" data-creditos="30" data-req="r9_1" data-req-name="Seminario de Título I" onclick="toggle('r10_1')">Seminario de Título II / Práctica Profesional</div>
                 </div>
             </div>
         </div>
@@ -219,9 +227,8 @@
         actualizar();
     }
 
-    // FUNCIÓN PARA EDITAR OFG Y OPR CON CLIC DERECHO
     function editEditable(event, id) {
-        event.preventDefault(); // Evita el menú contextual del navegador
+        event.preventDefault(); 
         const el = document.getElementById(id);
         
         const nuevoNombre = prompt("Nombre de la asignatura:", el.innerText);
@@ -240,28 +247,42 @@
     function actualizar() {
         const ramos = document.querySelectorAll('.ramo');
         
-        // Lógica de requisitos
-        ramos.forEach(r => {
-            const reqId = r.getAttribute('data-req');
-            if (reqId) {
-                const reqEl = document.getElementById(reqId);
-                if (!reqEl.classList.contains('aprobado')) {
-                    r.classList.add('bloqueado');
-                    r.classList.remove('aprobado');
-                } else {
-                    r.classList.remove('bloqueado');
-                }
-            }
-        });
+        let huboCambio = true;
+        while (huboCambio) {
+            huboCambio = false;
+            ramos.forEach(r => {
+                const reqAttr = r.getAttribute('data-req');
+                if (reqAttr) {
+                    const reqIds = reqAttr.split(',').map(s => s.trim());
+                    const todosAprobados = reqIds.every(reqId => {
+                        const reqEl = document.getElementById(reqId);
+                        return reqEl && reqEl.classList.contains('aprobado');
+                    });
 
-        // Avance de carrera
+                    if (!todosAprobados) {
+                        if (!r.classList.contains('bloqueado') || r.classList.contains('aprobado')) {
+                            r.classList.add('bloqueado');
+                            r.classList.remove('aprobado');
+                            huboCambio = true;
+                        }
+                    } else {
+                        if (r.classList.contains('bloqueado')) {
+                            r.classList.remove('bloqueado');
+                            huboCambio = true;
+                        }
+                    }
+                }
+            });
+        }
+
+        // Calcular avance excluyendo el curso de ayudantes (data-no-avance="true")
+        const ramosComputables = document.querySelectorAll('.ramo:not([data-no-avance="true"])');
         let aprobados = 0;
-        ramos.forEach(r => { if (r.classList.contains('aprobado')) aprobados++; });
-        const porcentaje = Math.round((aprobados / ramos.length) * 100) || 0;
+        ramosComputables.forEach(r => { if (r.classList.contains('aprobado')) aprobados++; });
+        const porcentaje = Math.round((aprobados / ramosComputables.length) * 100) || 0;
         document.getElementById('progress-bar').style.width = porcentaje + '%';
         document.getElementById('label-avance').innerText = `Avance de Carrera: ${porcentaje}%`;
 
-        // Guardar estado y datos personalizados
         const save = {};
         ramos.forEach(r => {
             save[r.id] = {
@@ -271,17 +292,16 @@
                 creditos: r.getAttribute('data-creditos')
             };
         });
-        localStorage.setItem('malla_antro_final_v20', JSON.stringify(save));
+        localStorage.setItem('malla_antropologia_uc_v1', JSON.stringify(save));
     }
 
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antro_final_v20'));
+        const save = JSON.parse(localStorage.getItem('malla_antropologia_uc_v1'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
                 if (el) {
                     if (save[id].aprobado) el.classList.add('aprobado');
-                    // Restaurar nombres y datos si son editables (OFG u Optativos OPR)
                     if (el.classList.contains('ofg') || el.classList.contains('optativo')) {
                         el.innerText = save[id].nombre;
                         el.setAttribute('data-sigla', save[id].sigla);
