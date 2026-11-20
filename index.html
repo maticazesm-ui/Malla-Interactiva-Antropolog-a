@@ -210,8 +210,7 @@
                 </div>
                 <div class="semestre">
                     <div class="semestre-header">X</div>
-                    <div id="r10_1" class="ramo optativo" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r10_1')" oncontextmenu="editEditable(event, 'r10_1')">Optativo de Profundización</div>
-                    <div id="r10_2" class="ramo terminal" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r10_2')">Taller de Titulación</div>
+                    <div id="r10_1" class="ramo terminal" data-sigla="-" data-creditos="10" data-req-name="No tiene" onclick="toggle('r10_1')">Taller de Titulación</div>
                 </div>
             </div>
         </div>
@@ -277,11 +276,11 @@
                 creditos: r.getAttribute('data-creditos')
             };
         });
-        localStorage.setItem('malla_antropologia_v4', JSON.stringify(save));
+        localStorage.setItem('malla_antropologia_v5', JSON.stringify(save));
     }
 
     function cargar() {
-        const save = JSON.parse(localStorage.getItem('malla_antropologia_v4'));
+        const save = JSON.parse(localStorage.getItem('malla_antropologia_v5'));
         if (save) {
             Object.keys(save).forEach(id => {
                 const el = document.getElementById(id);
